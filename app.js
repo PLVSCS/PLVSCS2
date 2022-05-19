@@ -11,8 +11,7 @@ var connection = mysql.createConnection({
   user     :'root',
   password : '',
   database:'plvscsdb',
-  multipleStatements: true,
-  port: '3000'
+  multipleStatements: true
 });
 
 
