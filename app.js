@@ -7,10 +7,10 @@ var logger = require('morgan');
 var mysql      = require('mysql');  
 
 var connection = mysql.createConnection({
-  host     :'plvscdb2.clvqxdczmykt.ap-southeast-1.rds.amazonaws.com',
+  host     :'localhost',
   user     :'root',
-  password : 'Test1234',
-  database:'plvscdb2',
+  password : '',
+  database:'plvscsdb',
   multipleStatements: true
   
 });
