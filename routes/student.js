@@ -37,7 +37,8 @@ router.post('/', async (req, res) => {
 
         QRCode.toDataURL(currentStudent.id.toString(), function (err, url) {
           studentqrCode = url;
-          res.render('studentdashboard', { currentStudent, url, noOfNotification: rows_[0].noOfNotification })
+          var notif = rows_[0].noOfNotification ? rows_[0].noOfNotification : 0;
+          res.render('studentdashboard', { currentStudent, url, noOfNotification:  notif})
         })
 
       })
