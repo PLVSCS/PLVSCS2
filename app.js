@@ -6,13 +6,18 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql      = require('mysql');  
 
-var connection = mysql.createConnection({
-  host     :'localhost',
-  user     :'root',
-  password : '',
-  database:'plvscsdb',
-  multipleStatements: true
-  
+var connection = mysql.createConnection({   
+  host: '194.163.34.90',
+  port: 3306,
+  user: 'plvscs',
+  password: 'plvscsdb2022',
+  database: 'plvscsdb',
+  timezone: '+0800',
+  connectionLimit: 10,
+  connectTimeout: 10000,
+  waitForConnections: true,
+  multipleStatements: true,
+  queueLimit: 0  
 });
 
 connection.connect((err)=>{
@@ -41,7 +46,7 @@ var io = require('socket.io')(server);
 
 io.on('connection',async(socket)=>{
   
-  console.log("a user connected")
+  
   
 })
 
