@@ -8,8 +8,8 @@ var mysql      = require('mysql');
 
 var connection = mysql.createConnection({
   host     :'localhost',
-  user     :'plvscs',
-  password : 'plvscsdb2022',
+  user     :'root',
+  password : '',
   database:'plvscsdb',
   multipleStatements: true
   
