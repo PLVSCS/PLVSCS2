@@ -56,7 +56,7 @@ router.post("/validate_action/:eventid",(req,res)=>{
     
    
 
-    sqldb.query(`select esh.*,ev.* from eventStudentAndHours as esh join event as ev on esh.eventId = ev.id  where esh.studentId = ${id} and ev.id = ${eventid} `,(err,result)=>{
+    sqldb.query(`select esh.*,ev.* from eventstudentandhours as esh join event as ev on esh.eventId = ev.id  where esh.studentId = ${id} and ev.id = ${eventid} `,(err,result)=>{
 
 
       if(err) {
@@ -74,7 +74,7 @@ router.post("/validate_action/:eventid",(req,res)=>{
       } else {
 
        
-        sqldb.query(`update eventStudentAndHours set hourRendered = (hours_multiplier * ${eventhrs}) where studentId = ${id} and eventId = ${eventid}`,(err,result)=>{
+        sqldb.query(`update eventstudentandhours set hourRendered = (hours_multiplier * ${eventhrs}) where studentId = ${id} and eventId = ${eventid}`,(err,result)=>{
           console.log("Hours Updated!");
         })
 
@@ -93,7 +93,7 @@ router.get("/list_of_event/:adminid",(req,res)=>{
 
   sqldb = req.con ;
 
-  sqldb.query(`select * from adminAndCreatedEvent join event on adminAndCreatedEvent.eventId = event.id where adminId = ${req.params.adminid}`,(err,result)=>{
+  sqldb.query(`select * from adminandcreatedevent join event on adminandcreatedevent.eventId = event.id where adminId = ${req.params.adminid}`,(err,result)=>{
     if(err) {
       res.send(err)
     }
@@ -111,7 +111,7 @@ router.get("/list_of_event_approved/:adminid",(req,res)=>{
 
   sqldb = req.con ;
 
-  sqldb.query(`select * from adminAndCreatedEvent join event on adminAndCreatedEvent.eventId = event.id where adminId = ${req.params.adminid} and eventStatus = 1  `,(err,result)=>{
+  sqldb.query(`select * from adminandcreatedevent join event on adminandcreatedevent.eventId = event.id where adminId = ${req.params.adminid} and eventStatus = 1  `,(err,result)=>{
     if(err) {
       res.send(err)
       return
@@ -275,9 +275,9 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
         }
 
 
-        sqldb.query(`insert into studentNoOfNotification(studentId) values(${sqldb.escape(result.insertId)}) `,(err,row)=>{
+        sqldb.query(`insert into studentnoofnotification(studentId) values(${sqldb.escape(result.insertId)}) `,(err,row)=>{
           if(err){
-            console.log("err of studentNotification "+ err)
+            console.log("err of studentnotification "+ err)
           }
 
         })
@@ -333,7 +333,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
 
     //mysql
-    sqldb.query(`insert into event(eventName,eventHours,eventNoOfStudent,eventStartDate,eventEndDate,eventVenue,dateAndTime,scannedImage,schoolYear,semester,eventNeededMaterial) values(
+    sqldb.query(`insert into event(eventName,eventHours,eventnoofstudent,eventStartDate,eventEndDate,eventVenue,dateAndTime,scannedImage,schoolYear,semester,eventNeededMaterial) values(
       '${req.body.eventname}',
       '${req.body.eventhours}',
       '${noOfStu}',
@@ -350,7 +350,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
         }
 
 
-        sqldb.query(`insert into adminAndCreatedEvent(adminId,eventId) values(${req.body.id_admin},${result.insertId})`,(err,result)=>{
+        sqldb.query(`insert into adminandcreatedevent(adminId,eventId) values(${req.body.id_admin},${result.insertId})`,(err,result)=>{
           if(err) {
             console.log(err)
           }
@@ -459,7 +459,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
     newEvent = new eventdb({
     eventName:req.body.eventname,
     eventHours:req.body.eventhours,
-    eventNoOfStudent:noOfStu,
+    eventnoofstudent:noOfStu,
     eventStartDate:req.body.eventstartdate,
     eventEndDate:req.body.eventenddate,
     eventVenue:req.body.venue,

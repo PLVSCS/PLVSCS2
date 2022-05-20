@@ -89,7 +89,7 @@ router.get('/markAttendance/:eventid/:studentid', async (req, res) => {
   sqldb = req.con;
 
 
-  sqldb.query(`select * from eventAndWishingToParticipate where eventId = ${req.params.eventid} and studentId = ${req.params.studentid}`, (err, result) => {
+  sqldb.query(`select * from eventandwishingtoparticipate where eventId = ${req.params.eventid} and studentId = ${req.params.studentid}`, (err, result) => {
     if (err) {
       console.log(err)
     }
@@ -101,7 +101,7 @@ router.get('/markAttendance/:eventid/:studentid', async (req, res) => {
 
 
       sqldb.query(`
-    select * from eventStudentAndHours where eventId = ${req.params.eventid} and studentId = ${req.params.studentid};
+    select * from eventstudentandhours where eventId = ${req.params.eventid} and studentId = ${req.params.studentid};
     select * from event where id = ${sqldb.escape(req.params.eventid)} ;
     select * from student where id = ${sqldb.escape(req.params.studentid)} `,
 
@@ -116,7 +116,7 @@ router.get('/markAttendance/:eventid/:studentid', async (req, res) => {
           }
 
 
-          var eventStudentAndHours = result[0];
+          var eventstudentandhours = result[0];
           var eventtbl = result[1];
           var student = result[2]
 
@@ -147,7 +147,7 @@ router.get('/markAttendance/:eventid/:studentid', async (req, res) => {
             if (eventtbl[0].studentParticipating < (eventtbl[0].eventNoOfStudent == "No Limit" ? 1000000 : eventtbl[0].eventNoOfStudent)) {
 
 
-              sqldb.query(`insert into eventStudentAndHours (eventId,studentId,timeIn) values(${sqldb.escape(req.params.eventid)}, ${sqldb.escape(req.params.studentid)},${sqldb.escape(formatAMPM(new Date()))})`, (err, result) => {
+              sqldb.query(`insert into eventstudentandhours (eventId,studentId,timeIn) values(${sqldb.escape(req.params.eventid)}, ${sqldb.escape(req.params.studentid)},${sqldb.escape(formatAMPM(new Date()))})`, (err, result) => {
                 if (err) {
                   res.send("there was an err1: " + err)
                   return
@@ -164,7 +164,7 @@ router.get('/markAttendance/:eventid/:studentid', async (req, res) => {
 
             } else if (eventtbl[0].eventNoOfStudent == "Unlimited Number of Student") {
 
-              sqldb.query(`insert into eventStudentAndHours(eventId,studentId,timeIn) values(${parseInt(req.params.eventid)},${parseInt(req.params.studentid)},${formatAMPM(new Date())})`, (err, result) => {
+              sqldb.query(`insert into eventstudentandhours(eventId,studentId,timeIn) values(${parseInt(req.params.eventid)},${parseInt(req.params.studentid)},${formatAMPM(new Date())})`, (err, result) => {
                 if (err) {
                   res.send("there was an err2: " + err)
                   return
@@ -301,7 +301,7 @@ router.get("/approve/:evid", async (req,
           newNotifications.push([`${n.id}`, `a new event has been approved, check the event/activities tab for "${result1[0].eventName}"`])
         })
 
-        sqldb.query(`insert into studentNotification(studentId,notification) values ?`, [newNotifications], (err, result) => {
+        sqldb.query(`insert into studentnotification(studentId,notification) values ?`, [newNotifications], (err, result) => {
 
           if (err) {
             console.log(err)
@@ -323,7 +323,7 @@ router.get("/approve/:evid", async (req,
               newNotifications_.push([`${n.id}`, `a new event has been approved "${result1[0].eventName}"`])
             })
 
-            sqldb.query(`insert into adminNotification(adminId,notification) values ?`, [newNotifications_], (err, result__) => {
+            sqldb.query(`insert into adminnotification(adminId,notification) values ?`, [newNotifications_], (err, result__) => {
 
               if (err) {
                 console.log(err)
@@ -340,7 +340,7 @@ router.get("/approve/:evid", async (req,
 
 
 
-          sqldb.query(`update studentNoOfNotification set noOfNotification = noOfNotification + 1 `, (err, rows) => {
+          sqldb.query(`update studentnoOfnotification set noOfNotification = noOfNotification + 1 `, (err, rows) => {
 
 
             if (err) {
@@ -357,7 +357,7 @@ router.get("/approve/:evid", async (req,
 
 
 
-          sqldb.query(`update adminNoOfNotification set noOfNotification = noOfNotification + 1 where adminType = "eao"  `, (err, rows) => {
+          sqldb.query(`update adminnoOfnotification set noOfNotification = noOfNotification + 1 where adminType = "eao"  `, (err, rows) => {
 
 
             if (err) {
@@ -508,7 +508,7 @@ router.get("/join/:eventid/:studentid", async (req, res) => {
   sqldb = req.con;
 
 
-  sqldb.query(`select * from eventAndWishingToParticipate  where eventId = ${req.params.eventid} and studentId = ${req.params.studentid};
+  sqldb.query(`select * from eventandwishingtoparticipate  where eventId = ${req.params.eventid} and studentId = ${req.params.studentid};
     select * from event where id = ${sqldb.escape(req.params.eventid)} ;
     select * from student where id = ${sqldb.escape(req.params.studentid)} `,
     (err, result) => {
@@ -532,7 +532,7 @@ router.get("/join/:eventid/:studentid", async (req, res) => {
         if (result[1][0].studentParticipating < result[1][0].eventNoOfStudent) {
 
 
-          sqldb.query(`insert into eventAndWishingToParticipate (eventId,studentId) values(${sqldb.escape(req.params.eventid)}, ${sqldb.escape(req.params.studentid)})`, (err, result) => {
+          sqldb.query(`insert into eventandwishingtoparticipate (eventId,studentId) values(${sqldb.escape(req.params.eventid)}, ${sqldb.escape(req.params.studentid)})`, (err, result) => {
             if (err) {
               res.send("there was an err1: " + err)
               return
@@ -549,7 +549,7 @@ router.get("/join/:eventid/:studentid", async (req, res) => {
 
         } else if (result[1][0].eventNoOfStudent == "Unlimited Number of Student") {
 
-          sqldb.query(`insert into eventAndWishingToParticipate(eventId,studentId) values(${parseInt(req.params.eventid)},${parseInt(req.params.studentid)})`, (err, result) => {
+          sqldb.query(`insert into eventandwishingtoparticipate(eventId,studentId) values(${parseInt(req.params.eventid)},${parseInt(req.params.studentid)})`, (err, result) => {
             if (err) {
               res.send("there was an err2: " + err)
               return
@@ -624,7 +624,7 @@ router.get("/inputrenderedhours/:eventid/:studentid/:hours", async (req,
 
   sqldb = req.con;
 
-  sqldb.query(`update eventStudentAndHours set timeOut = '${req.params.hours}' where eventId = ${req.params.eventid} and studentId = ${req.params.studentid} `,
+  sqldb.query(`update eventstudentandhours set timeOut = '${req.params.hours}' where eventId = ${req.params.eventid} and studentId = ${req.params.studentid} `,
     (err, result) => {
 
       if (err) {
@@ -646,7 +646,7 @@ router.get("/hour_rendered/:eventid/:studentid/:hours", async (req,
 
   sqldb = req.con;
 
-  sqldb.query(`update eventStudentAndHours set hourRendered  = '${req.params.hours}' where eventId = ${req.params.eventid} and studentId = ${req.params.studentid} `,
+  sqldb.query(`update eventstudentandhours set hourRendered  = '${req.params.hours}' where eventId = ${req.params.eventid} and studentId = ${req.params.studentid} `,
     (err, result) => {
 
       if (err) {
@@ -706,7 +706,7 @@ router.get("/mark_done/:eventid", (req, res) => {
 router.get("/participating_in/:studentid", (req, res) => {
   sqldb = req.con;
 
-  sqldb.query(`select * from eventAndWishingToParticipate join event on eventAndWishingToParticipate.eventId = event.id  where studentId = ${req.params.studentid}`, (err, result) => {
+  sqldb.query(`select * from eventandwishingtoparticipate join event on eventandwishingtoparticipate.eventId = event.id  where studentId = ${req.params.studentid}`, (err, result) => {
     if (err) {
       res.send(err)
       return
@@ -726,7 +726,7 @@ router.get("/cancelParticipation/:eventid/:studentid", (req, res) => {
 
   sqldb = req.con;
 
-  sqldb.query(`delete from eventAndWishingToParticipate where studentId = ${req.params.studentid} and eventId = ${req.params.eventid}`, (err, result) => {
+  sqldb.query(`delete from eventandwishingtoparticipate where studentId = ${req.params.studentid} and eventId = ${req.params.eventid}`, (err, result) => {
     if (err) {
       res.send(err)
       return
@@ -734,7 +734,7 @@ router.get("/cancelParticipation/:eventid/:studentid", (req, res) => {
 
 
 
-    sqldb.query(`delete from eventStudentAndHours where studentId = ${req.params.studentid} and eventId = ${req.params.eventid}`, (err, result) => {
+    sqldb.query(`delete from eventstudentandhours where studentId = ${req.params.studentid} and eventId = ${req.params.eventid}`, (err, result) => {
       if (err) {
         res.send(err)
         return
@@ -768,7 +768,7 @@ router.get("/timeout/:eventid/:studentid", (req, res) => {
 
   sqldb = req.con;
 
-  sqldb.query(`select * from eventStudentAndHours where eventId = ${sqldb.escape(req.params.eventid)} and studentId = ${req.params.studentid.replace("%20%20", " ")}`, (err, rowss) => {
+  sqldb.query(`select * from eventstudentandhours where eventId = ${sqldb.escape(req.params.eventid)} and studentId = ${req.params.studentid.replace("%20%20", " ")}`, (err, rowss) => {
 
     if (err) {
       res.send("there was an error " + err)
@@ -781,7 +781,7 @@ router.get("/timeout/:eventid/:studentid", (req, res) => {
     }
 
 
-    sqldb.query(`update eventStudentAndHours set timeOut = ${formatAMPM(new Date())} where eventId = ${sqldb.escape(req.params.eventid)} and studentId = ${req.params.studentid.replace("%20%20", " ")}`, (err, result_) => {
+    sqldb.query(`update eventstudentandhours set timeOut = ${formatAMPM(new Date())} where eventId = ${sqldb.escape(req.params.eventid)} and studentId = ${req.params.studentid.replace("%20%20", " ")}`, (err, result_) => {
 
       if (err) {
         res.send("therw was an error: " + err)
@@ -858,7 +858,7 @@ router.get('/:eventid', async (req,
 
   sqldb.query(`
     select * from event where id = ${req.params.eventid} ;
-    select * from eventStudentAndHours join student on eventStudentAndHours.studentId = student.id  where eventId = ${req.params.eventid}
+    select * from eventstudentandhours join student on eventstudentandhours.studentId = student.id  where eventId = ${req.params.eventid}
     `,
     (err, result) => {
       console.log(JSON.stringify(result))
@@ -959,7 +959,7 @@ let newEventAndRenHours = await new eventAndRenderedHoursdb({
 
 else if(eventToBeModified.studentParticipating.length == "Unlimited Number of Student" ) {
   //mysql
-  sqldb.query(`insert into eventStudentAndHours(eventId,studentId) values(${eventToBeModifiedMysql.id},${newStuParticipatingMysql.id})`,(err,result)=>{
+  sqldb.query(`insert into eventstudentandhours(eventId,studentId) values(${eventToBeModifiedMysql.id},${newStuParticipatingMysql.id})`,(err,result)=>{
     if(err) {
       console.log(err)
       return ;
@@ -982,7 +982,7 @@ else if(eventToBeModified.studentParticipating.length == "Unlimited Number of St
 
     else {
   //mysql
-  sqldb.query(`insert into eventStudentAndHours(eventId,studentId) values(${eventToBeModifiedMysql.id},${newStuParticipatingMysql.id})`,(err,result)=>{
+  sqldb.query(`insert into eventstudentandhours(eventId,studentId) values(${eventToBeModifiedMysql.id},${newStuParticipatingMysql.id})`,(err,result)=>{
     if(err) {
       console.log(err)
       return ;
