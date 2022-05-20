@@ -156,7 +156,7 @@ router.post('/',async(req,res)=>{
  //mysql
  else if(req.body.adminid != "administheid" && req.body.password != "administhepassword") {
  req.con.query(`select * from admin where idNo = ${req.body.adminid};
- select admin.id, adminNoOfNotification.adminId,adminnoofnotification.noOfNotification,admin.idNo from admin join adminNoOfNotification on admin.id = adminNoOfNotification.adminId where admin.idNo = "${req.body.adminid}"
+ select admin.id, adminnoofnotification.adminId,adminnoofnotification.noOfNotification,admin.idNo from admin join adminnoofnotification on admin.id = adminnoofnotification.adminId where admin.idNo = "${req.body.adminid}"
  `,(err,result)=>{
    if(err) {
      console.log(err) ;
@@ -361,7 +361,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
 
 
-        //adminNoOfNotification
+        //adminnoofnotification
 
 
 
@@ -395,7 +395,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
 
 
-            sqldb.query(`update adminNoOfNotification set noOfNotification = noOfNotification + 1 where adminType = "oic"`,(err,rows)=>{
+            sqldb.query(`update adminnoofnotification set noOfNotification = noOfNotification + 1 where adminType = "oic"`,(err,rows)=>{
 
 
               if(err) {
@@ -498,7 +498,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
 
 
-        sqldb.query(`insert into adminNoOfNotification(adminId,adminType) values(${sqldb.escape(result.insertId)},"eao") `,(err,row)=>{
+        sqldb.query(`insert into adminnoofnotification(adminId,adminType) values(${sqldb.escape(result.insertId)},"eao") `,(err,row)=>{
           if(err){
             console.log("err of adminNotification "+ err)
           }
@@ -560,7 +560,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
 
 
-        sqldb.query(`insert into adminNoOfNotification(adminId,adminType) values(${sqldb.escape(result.insertId)},"oic") `,(err,row)=>{
+        sqldb.query(`insert into adminnoofnotification(adminId,adminType) values(${sqldb.escape(result.insertId)},"oic") `,(err,row)=>{
           if(err){
             console.log("err of adminNotification "+ err)
           }
@@ -632,7 +632,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
 
 
-        sqldb.query(`insert into adminNoOfNotification(adminId,adminType) values(${sqldb.escape(result.insertId)},"acctmaker") `,(err,row)=>{
+        sqldb.query(`insert into adminnoofnotification(adminId,adminType) values(${sqldb.escape(result.insertId)},"acctmaker") `,(err,row)=>{
           if(err){
             console.log("err of adminNotification "+ err)
           }
@@ -790,7 +790,7 @@ router.get("/no_of_notification/:adminid",(req,res)=>{
   sqldb = req.con ;
 
 
-  sqldb.query(`select * from adminNoOfNotification where adminId=${req.params.adminid}`,(err,result)=>{
+  sqldb.query(`select * from adminnoofnotification where adminId=${req.params.adminid}`,(err,result)=>{
 
     if(err) {
       console.log("admi")
@@ -810,7 +810,7 @@ router.get("/allnotification/:adminid",(req,res)=>{
   sqldb = req.con ;
 
 
-  sqldb.query(`update adminNoOfNotification set noOfNotification = 0 where adminId = ${req.params.adminid}`,(err,r1)=>{
+  sqldb.query(`update adminnoofnotification set noOfNotification = 0 where adminId = ${req.params.adminid}`,(err,r1)=>{
 
     if(err) {
       console.log(err )
