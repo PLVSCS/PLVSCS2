@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
   host     :'localhost',
   user     :'plvscs',
   password : 'plvscsdb2022',
-  database:'plvscdb',
+  database:'plvscsdb',
   multipleStatements: true  
 });
 
