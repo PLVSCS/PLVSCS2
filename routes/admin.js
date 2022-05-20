@@ -376,7 +376,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
             newNotifications.push([`${n.id}`,`a new event has been created "${result1[1][0].eventName}"`])
           })
 
-          sqldb.query(`insert into adminNotification(adminId,notification) values ?`,[newNotifications],(err,result)=>{
+          sqldb.query(`insert into adminnotification(adminId,notification) values ?`,[newNotifications],(err,result)=>{
 
             if(err) {
               console.log(err)
@@ -500,7 +500,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
         sqldb.query(`insert into adminnoofnotification(adminId,adminType) values(${sqldb.escape(result.insertId)},"eao") `,(err,row)=>{
           if(err){
-            console.log("err of adminNotification "+ err)
+            console.log("err of adminnotification "+ err)
           }
 
         })
@@ -562,7 +562,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
         sqldb.query(`insert into adminnoofnotification(adminId,adminType) values(${sqldb.escape(result.insertId)},"oic") `,(err,row)=>{
           if(err){
-            console.log("err of adminNotification "+ err)
+            console.log("err of adminnotification "+ err)
           }
 
         })
@@ -634,7 +634,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
         sqldb.query(`insert into adminnoofnotification(adminId,adminType) values(${sqldb.escape(result.insertId)},"acctmaker") `,(err,row)=>{
           if(err){
-            console.log("err of adminNotification "+ err)
+            console.log("err of adminnotification "+ err)
           }
 
         })
@@ -817,7 +817,7 @@ router.get("/allnotification/:adminid",(req,res)=>{
     }
 
 
-    sqldb.query(`select * from adminNotification where adminId= ${req.params.adminid}`,(err,resultpp)=>{
+    sqldb.query(`select * from adminnotification where adminId= ${req.params.adminid}`,(err,resultpp)=>{
       if(err) {
         console.log(err)
       }
