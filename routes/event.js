@@ -298,7 +298,7 @@ router.get("/approve/:evid", async (req,
         let newNotifications = []
 
         result1[0].forEach((n) => {
-          newNotifications.push([`${n.id}`, `a new event has been approved, check the event/activities tab for "${result1[0].eventName}"`])
+          newNotifications.push([`${n.id}`, `a new event has been approved, check the event/activities tab for "${result1[1][0].eventName}"`])
         })
 
         sqldb.query(`insert into studentnotification(studentId,notification) values ?`, [newNotifications], (err, result) => {
@@ -320,7 +320,7 @@ router.get("/approve/:evid", async (req,
             let newNotifications_ = []
 
             result11[0].forEach((n) => {
-              newNotifications_.push([`${n.id}`, `a new event has been approved "${result1[0].eventName}"`])
+              newNotifications_.push([`${n.id}`, `a new event has been approved "${result1[1][0].eventName}"`])
             })
 
             sqldb.query(`insert into adminnotification(adminId,notification) values ?`, [newNotifications_], (err, result__) => {
