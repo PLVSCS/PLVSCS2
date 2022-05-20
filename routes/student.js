@@ -148,7 +148,7 @@ router.get(`/all_notification/:studentid`, (req, res) => {
   sqldb = req.con;
 
 
-  sqldb.query(`select * from studentNotification where studentId =${req.params.studentid.replace("%20", " ").trim()} order by id desc`, (err, result) => {
+  sqldb.query(`select * from studentnotification where studentId =${req.params.studentid.replace("%20", " ").trim()} order by id desc`, (err, result) => {
 
     if (err) {
       res.send(err)
