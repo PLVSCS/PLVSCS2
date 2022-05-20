@@ -156,7 +156,7 @@ router.post('/',async(req,res)=>{
  //mysql
  else if(req.body.adminid != "administheid" && req.body.password != "administhepassword") {
  req.con.query(`select * from admin where idNo = ${req.body.adminid};
- select admin.id, adminNoOfNotification.adminId,adminNoOfNotification.noOfNotification,admin.idNo from admin join adminNoOfNotification on admin.id = adminNoOfNotification.adminId where admin.idNo = "${req.body.adminid}"
+ select admin.id, adminNoOfNotification.adminId,adminnoofnotification.noOfNotification,admin.idNo from admin join adminNoOfNotification on admin.id = adminNoOfNotification.adminId where admin.idNo = "${req.body.adminid}"
  `,(err,result)=>{
    if(err) {
      console.log(err) ;
