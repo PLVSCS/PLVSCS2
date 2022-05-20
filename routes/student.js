@@ -92,9 +92,9 @@ router.get("/dashboard/:studentid", (req, res) => {
 
   sqldb = req.con;
 
-  sqldb.query(`select * from eventAndWishingToParticipate join event on eventAndWishingToParticipate.eventId = event.id  
+  sqldb.query(`select * from eventandwishingtoparticipate join event on eventAndWishingToParticipate.eventId = event.id  
     where studentId = ${req.params.studentid} ;
-    select * from eventStudentAndHours join event on eventStudentAndHours.eventId = event.id  where studentId = ${req.params.studentid}
+    select * from eventstudentandhours join event on eventStudentAndHours.eventId = event.id  where studentId = ${req.params.studentid}
     `, (err, result) => {
 
     if (err) {
