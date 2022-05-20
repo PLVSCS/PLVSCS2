@@ -379,7 +379,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
           sqldb.query(`insert into adminnotification(adminId,notification) values ?`,[newNotifications],(err,result)=>{
 
             if(err) {
-              console.log(err)
+              console.log(err) 
             }
 
 
