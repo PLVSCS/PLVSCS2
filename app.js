@@ -8,9 +8,9 @@ var mysql      = require('mysql');
 
 var connection = mysql.createConnection({
   host     :'plvscdb2.clvqxdczmykt.ap-southeast-1.rds.amazonaws.com',
-  user     :'root',
-  password : 'Test1234',
-  database:'plvscdb2',
+  user     :'plvscs',
+  password : 'plvscsdb2022',
+  database:'plvscdb',
   multipleStatements: true
   
 });
