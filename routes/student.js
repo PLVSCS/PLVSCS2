@@ -13,6 +13,10 @@ router.get('/', (req, res) => {
   res.render('student')
 })
 
+   
+
+
+
 
 router.post('/', async (req, res) => {
 
