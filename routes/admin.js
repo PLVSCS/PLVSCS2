@@ -341,7 +341,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
       '${req.body.eventenddate}',
       '${req.body.venue}',
       '${req.body.dateandtime}',
-      '${(req.file.path.substring(7).toString()).replace('\\','/')}',
+      '${(req.file.path.substring(10).toString()).replace('\\','/')}',
       '${req.body.schoolyear}',
       '${req.body.semester}','${req.body.material}')`,(err,result)=>{
         if(err) {
