@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
 
     if (currentStudent && currentStudent.password == req.body.password) {
 
-      sqldb.query(`select * from studentNoOfNotification where studentId = ${currentStudent.id}`, (err, rows_) => {
+      sqldb.query(`select * from studentnoofnotification where studentId = ${currentStudent.id}`, (err, rows_) => {
 
         QRCode.toDataURL(currentStudent.id.toString(), function (err, url) {
           studentqrCode = url;
@@ -120,7 +120,7 @@ router.get("/notifications/:studentid", (req, res) => {
   sqldb = req.con
 
 
-  sqldb.query(`select * from studentNoOfNotification where studentId = ${sqldb.escape(req.params.studentid)}`, (err, rows) => {
+  sqldb.query(`select * from studentnoofnotification where studentId = ${sqldb.escape(req.params.studentid)}`, (err, rows) => {
 
     if (err) {
       console.log(err)
@@ -156,7 +156,7 @@ router.get(`/all_notification/:studentid`, (req, res) => {
     }
 
 
-    sqldb.query(`update studentNoOfNotification set  noOfNotification = 0 where studentId = ${sqldb.escape(req.params.studentid)} `, (err, result__) => {
+    sqldb.query(`update studentnoofnotification set  noOfNotification = 0 where studentId = ${sqldb.escape(req.params.studentid)} `, (err, result__) => {
       if (err) {
         console.log("err- " + err)
       }
