@@ -780,7 +780,7 @@ Image of Approval Letter” <br> "File types allowed: .jpg, .jpeg,
               <td> ${event.eventVenue} </td>
               <td> ${event.dateAndTime} </td>
               <td> ${event.eventStatus==1 ? "Approved": "Not Yet Approved"} </td>
-              <td> ${event.isEventDone == 1 ? "Done": "Not Yet Done"}  </td>
+              <td> ${event.isDone == 1 ? "Done": "Not Yet Done"}  </td>
               <!--   <td> ${event.listofStudentWishingToParticipate} </td> -->
 
               <td> <button onclick="getEventInfo('/event/${event.id}')" class="btn btn-primary"> Manage </button> </td>
