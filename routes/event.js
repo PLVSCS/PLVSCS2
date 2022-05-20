@@ -890,7 +890,7 @@ router.get('/:eventid', async (req,
 
 
 function removePublic(string) {
-  return string.slice(7)
+  return string.slice(10)
 }
 
 
