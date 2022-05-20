@@ -6,29 +6,59 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql      = require('mysql');  
 
-var connection = mysql.createConnection({   
-  host: '194.163.34.90',
-  port: 3306,
-  user: 'plvscs',
-  password: 'plvscsdb2022',
-  database: 'plvscsdb',
-  timezone: '+0800',
-  connectionLimit: 10,
-  connectTimeout: 10000,
-  waitForConnections: true,
-  multipleStatements: true,
-  queueLimit: 0  
+var connection = mysql.createConnection({
+  host     :'localhost',
+  user     :'plvscs',
+  password :'plvscsdb2022',
+  database :'plvscsdb',
+  multipleStatements: true
 });
 
+
+/*
+var connection = mysql.createConnection({
+  host: 'sql6.freemysqlhosting.net',
+  user: 'sql6482238',
+  password: '6Rw8l7HZfx',
+  database: 'sql6482238',
+  multipleStatements: true
+
+});*/
+ 
+ 
+ 
 connection.connect((err)=>{
     if(err) {
         console.log(err)
-        //return ;
+        return ;
     }
     
   console.log('connected as id ' + connection.threadId);
+  
+    
     
 });
+
+
+
+
+/*
+sql = "select id from student"
+
+
+
+connection.query(sql,(err,result)=>{
+  if(err) {
+    console.log(err)
+  }
+  
+  console.log(result)
+  
+  
+})  */
+
+
+
 
 const QrScanner = require('qr-scanner')
 
@@ -45,6 +75,9 @@ var io = require('socket.io')(server);
 
 
 io.on('connection',async(socket)=>{
+  
+  console.log("a user connected")
+  
   
   
   
