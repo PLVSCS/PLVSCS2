@@ -11,81 +11,19 @@ var connection = mysql.createConnection({
   user     :'plvscs',
   password : 'plvscsdb2022',
   database:'plvscsdb',
-  multipleStatements: true  
+  multipleStatements: true
+  
 });
 
-
-/*
-var connection = mysql.createConnection({
-  host: 'sql6.freemysqlhosting.net',
-  user: 'sql6482238',
-  password: '6Rw8l7HZfx',
-  database: 'sql6482238',
-  multipleStatements: true
-
-});*/
- 
- 
-/*
 connection.connect((err)=>{
     if(err) {
         console.log(err)
-        return ;
+        //return ;
     }
     
-  //console.log('connected as id ' + connection.threadId);
-  
-    
+  console.log('connected as id ' + connection.threadId);
     
 });
-*/
-//var connection;
-
-
-function handleDisconnect() {
-  //var con = mysql.createConnection(connection); // Recreate the connection, since
-                                                  // the old one cannot be reused.
-
-  connection.connect(function(err) {              // The server is either down
-    if(err) {                                     // or restarting (takes a while sometimes).
-      console.log('error when connecting to db:', err);
-      //setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
-    }                                     // to avoid a hot loop, and to allow our node script to
-  });                                     // process asynchronous requests in the meantime.
-                                          // If you're also serving http, display a 503 error.
-  connection.on('error', function(err) {
-    connection.log('db error', err);
-    if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
-      //handleDisconnect();                         // lost due to either server restart, or a
-    } else {                                      // connnection idle timeout (the wait_timeout
-      throw err;                                  // server variable configures this)
-    }
-  });
-}
-
-handleDisconnect();
-
-
-
-
-
-/*
-sql = "select id from student"
-
-
-
-connection.query(sql,(err,result)=>{
-  if(err) {
-    console.log(err)
-  }
-  
-  console.log(result)
-  
-  
-})  */
-
-
-
 
 const QrScanner = require('qr-scanner')
 
@@ -104,9 +42,6 @@ var io = require('socket.io')(server);
 io.on('connection',async(socket)=>{
   
   console.log("a user connected")
-  
-  
-  
   
 })
 
