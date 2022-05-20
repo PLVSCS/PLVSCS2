@@ -340,7 +340,7 @@ router.get("/approve/:evid", async (req,
 
 
 
-          sqldb.query(`update studentnoOfnotification set noOfNotification = noOfNotification + 1 `, (err, rows) => {
+          sqldb.query(`update studentnoofnotification set noOfNotification = noOfNotification + 1 `, (err, rows) => {
 
 
             if (err) {
@@ -357,7 +357,7 @@ router.get("/approve/:evid", async (req,
 
 
 
-          sqldb.query(`update adminnoOfnotification set noOfNotification = noOfNotification + 1 where adminType = "eao"  `, (err, rows) => {
+          sqldb.query(`update adminnoofnotification set noOfNotification = noOfNotification + 1 where adminType = "eao"  `, (err, rows) => {
 
 
             if (err) {
