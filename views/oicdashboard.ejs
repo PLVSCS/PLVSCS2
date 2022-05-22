@@ -742,7 +742,7 @@
         <table class="table table-bordered table-striped">
         <tr>
           <th> Name of Event </th>
-        <th> Event Required Hours </th>
+        <th> Credited Hours </th>
         <th> Event Start Date  </th>
         <th>  Event End Date </th>
         <th> Participants Limit </th>
@@ -774,11 +774,11 @@
             <td>${event.eventStartDate} </td>
             <td>${event.eventEndDate} </td>
            
-           <td> ${event.eventNoOfStudent} </td>
+            <td> ${event.eventNoOfStudent == "Unlimited Number of Student" ? "No Limit": event.eventNoOfStudent } </td>
            <td> ${event.eventVenue} </td>
            <td> ${event.dateAndTime} </td>
            <td>${event.eventStatus == 1 ? "Approved" : "Dissaproved"}  </td>
-           <td>${event.isDone == 1 ? "Done" : "Not Yet Done"}  </td>
+           <td> ${event.isEventDone == 1 ? "Done": "Not Yet Done"}  </td>
            <td>${event.isValidated == 1 ? "Validated" : "Not Yet Validated"}  </td>
         <!--   <td> ${event.listofStudentWishingToParticipate} </td> -->
            
@@ -1343,7 +1343,7 @@
 
 <div class="col">
 
-<button class="btn btn-primary" onclick="getEvents('/event')"> Attendance Rendered List </button>
+<button class="btn btn-primary" onclick="getEvents('/event/event_all')"> Attendance Rendered List </button>
 
 
 

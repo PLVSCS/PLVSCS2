@@ -423,7 +423,7 @@ Image of Approval Letter” <br> "File types allowed: .jpg, .jpeg,
     <br>
 
 
-    <input type="submit" class="form-control bg-primary text-white text-center" value="Submit  Activity">
+    <input type="submit" class="form-control bg-primary text-white text-center" value="Submit Activity">
     </form>
 
     `
@@ -780,7 +780,7 @@ Image of Approval Letter” <br> "File types allowed: .jpg, .jpeg,
               <td> ${event.eventVenue} </td>
               <td> ${event.dateAndTime} </td>
               <td> ${event.eventStatus==1 ? "Approved": "Not Yet Approved"} </td>
-              <td> ${event.isEventDone == 1 ? "Done": "Not Yet Done"}  </th>
+              <td> ${event.isEventDone == 1 ? "Done": "Not Yet Done"}  </td>
               <!--   <td> ${event.listofStudentWishingToParticipate} </td> -->
 
               <td> <button onclick="getEventInfo('/event/${event.id}')" class="btn btn-primary"> Manage </button> </td>
@@ -1045,7 +1045,7 @@ Image of Approval Letter” <br> "File types allowed: .jpg, .jpeg,
         arr = JSON.parse(data)
 
 
-        eventUiToBeModified = `   <h1 class="text-center"> Modify  The Event</h1>
+        eventUiToBeModified = `   <h1 class="text-center"> Modify The Event</h1>
 
     <form class="w-75 form-group" method="post" action="/event/modify/${arr[0][0].id}" enctype="multipart/form-data">
 
@@ -1056,7 +1056,8 @@ Image of Approval Letter” <br> "File types allowed: .jpg, .jpeg,
     <input id="eventhours" value="${arr[0][0].eventHours}" type="number" name="eventhours" class="form-control" required>
     <br>
     <label for="eventhours">Event No of Students To Participate:</label>
-    <input value="${arr[0][0].eventNoOfStudent}" id="eventhours" type="number" name="eventnoofstudent" placeholder="leave it empty if unlimite number of student can apply" class="form-control" >
+    <input value="${arr[0][0].eventNoOfStudent}" id="eventhours" type="number" name="eventnoofstudent" placeholder="Leave it empty if the 
+number of participants has no limit" class="form-control" >
 
     <br>
     <label for="eventhours"> Venue:</label>
@@ -1083,15 +1084,15 @@ Image of Approval Letter” <br> "File types allowed: .jpg, .jpeg,
     <br>
     
     
-    
-    
-    <br>
     <label for="eventhours"> Upload Scanned Image</label>
-    <input id="eventhours" type="file" name="scannedimage" class="form-control" required>
+    <input id="eventhours" type="file" name="scannedimage" class="form-control">
+    
+    <br>
+   
     <br>
 
 
-    <input type="submit" class="form-control bg-primary text-white text-center" value="Submit  Event">
+    <input type="submit" class="form-control bg-primary text-white text-center" value="Submit Event">
     </form>
 
     `;
