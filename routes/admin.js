@@ -615,13 +615,13 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
  else if (req.params.entity ==="acctmaker") {
 
     //mysql
-    sqldb.query(`insert into admin(idNo,email,surname,contactNo,firstName,middleName,departmentCode,department,password,adminType) values('${req.body.idnumber}',
+    sqldb.query(`insert into admin(idNo,email,surname,contactNo,firstName,middleName,departmentCode,department,password,adminType) values('${parseInt(req.body.idnumber)}',
       '${req.body.email}',
       '${req.body.Surname}',
       '${req.body.contactnumber}',
       '${req.body.firstname}',
       '${req.body.middlename}',
-      '${req.body.departmentcode}',
+      '${parseInt(req.body.departmentcode)}',
       '${req.body.department}',
       '${req.body.password}',
       'acctmaker'
