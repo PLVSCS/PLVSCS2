@@ -483,13 +483,13 @@
         <td>  ${hr.eventStartDate} </td>
         <td> ${hr.semester} </th>
         <td> ${hr.schoolYear} </th>
-    <td>  ${hr.hourRendered} </td>
+    <td>  ${hr.eventHours} </td>
     <td>  ${hr.isEventDone ==1 ?  "Done" : "Not Yet Done"} </td>
     <td>  ${hr.isValidated ==1 ?  "Validated" : "Not Yet Validated"} </td>
         </tr>
         `
        
-        console.log(JSON.stringify(hr));
+     
       }
       
       console.log(response.data[0]);
