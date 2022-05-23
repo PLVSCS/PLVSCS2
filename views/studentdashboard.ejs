@@ -204,8 +204,8 @@
           eventsAndActivities()
           
           
-          let ReporteEvents = ` <br> <br> <center><div>` ;
-      let endEvent = `</div></center><br>` ;
+          let ReporteEvents = ` <br> <br><div>` ;
+      let endEvent = `</div>` ;
           
           
           axios.get("/event").then((res)=>{
@@ -237,7 +237,7 @@
                <p class="text-center">Event Date and Time: ${event.dateAndTime} </p>
           <br>
           <button class="btn btn-primary"> Join </button>
-          <br>
+         
           </div>` ;
         } 
             
