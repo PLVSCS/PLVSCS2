@@ -204,8 +204,8 @@
           eventsAndActivities()
           
           
-          let ReporteEvents = ` <br> <br> <div>` ;
-      let endEvent = `</div>` ;
+          let ReporteEvents = ` <br> <br> <center><div>` ;
+      let endEvent = `</div></center><br>` ;
           
           
           axios.get("/event").then((res)=>{
@@ -237,7 +237,7 @@
                <p class="text-center">Event Date and Time: ${event.dateAndTime} </p>
           <br>
           <button class="btn btn-primary"> Join </button>
-          
+          <br>
           </div>` ;
         } 
             
@@ -270,7 +270,7 @@
 
     async function fetchText(k) {
       let ReporteEvents = `<center><div >` ;
-      let endEvent = `</div></center>` ;
+      let endEvent = `</div></center><br>` ;
       let toBeFiltered ;
 //      let arr = [] ;
       try {
@@ -301,7 +301,7 @@
                <p class="text-center">Event Date : ${event.eventStartDate} </p>
           <br>
           <button class="btn btn-primary"> Join </button>
-          
+          <br>
           </div>` ;
         } 
         
@@ -396,8 +396,8 @@
   function cancelParticipation(a) {
     if(a==0) {
       
-      let ReporteEvents = ` <br> <br><div >` ;
-      let endEvent = `</div>`
+      let ReporteEvents = ` <br> <br><center><div >` ;
+      let endEvent = `</div></center><br>`
       
       
       axios.get(`/event/participating_in/${student.trim()}`).then((res)=>{
@@ -415,7 +415,7 @@
                <p class="text-center">Event Date and Time: ${event.dateAndTime} </p>
           <br>
           <button class="btn btn-danger text-white"> Cancel </button>
-          
+          <br>
           </div>` ;}
         
         
