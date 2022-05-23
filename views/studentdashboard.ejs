@@ -469,7 +469,7 @@
    let   numberOfActivitiesJoined = 0 
     let counter = 0
     let eventRows = "" 
-    
+     let lhrs = response.data[0].lackingHours;
       
       for(hr of response.data[0]) {
         hrs += parseInt(hr.hourRendered) ;
@@ -532,7 +532,7 @@
     </div>
     <div class=" p-1 col-4" style="background-color: #173979">
       Hours Lacking <br>
-      ${160-hrs_h}
+      ${lhrs-hrs_h}
     </div>
         
   
