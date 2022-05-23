@@ -433,10 +433,14 @@ Image of Approval Letter” <br> "File types allowed: .jpg, .jpeg,
     <div class="col"><button class="btn btn-primary btn-md" onclick="ch('event')" > Create Event/Activity</button></div>
 
 
-<div class="col" > <button class="btn btn-primary" onclick="listOfEvent()">List Of Created Event/activity </button> </div>
+
 
   <!--  <div class="col"><button class="btn btn-primary btn-md" onclick="ch('activity')" > Create Activity</button></div> -->
     </div>
+    <br>
+    <div class="row">
+      <div class="col" > <button class="btn btn-primary" onclick="listOfEvent()">List of Created Event/Activity </button> </div>
+      </div>
 
     `;
 
@@ -603,7 +607,7 @@ Image of Approval Letter” <br> "File types allowed: .jpg, .jpeg,
                    <input class="${isDone} btn-danger"  value="mark done"  type="button" onclick="markAsDone('/event/mark_done/${arr[0][0].id}')">
 
 
-          <input type="button" class="form-control text-light" style="background-color: #173979" value="Save as excel" >
+         <!-- <input type="button" class="form-control text-light" style="background-color: #173979" value="Save as excel" >-->
 
 
           </li> 
