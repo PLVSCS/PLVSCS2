@@ -298,7 +298,7 @@ router.get("/approve/:evid", async (req,
         let newNotifications = []
 
         result1[0].forEach((n) => {
-          newNotifications.push([`${n.id}`, `a new event has been approved, check the event/activities tab for "${result1[1][0].eventName}"`])
+          newNotifications.push([`${n.id}`, `A new event has been approved, please check the event/activities tab for "${result1[1][0].eventName}"`])
         })
 
         sqldb.query(`insert into studentnotification(studentId,notification) values ?`, [newNotifications], (err, result) => {
@@ -320,7 +320,7 @@ router.get("/approve/:evid", async (req,
             let newNotifications_ = []
 
             result11[0].forEach((n) => {
-              newNotifications_.push([`${n.id}`, `a new event has been approved "${result1[1][0].eventName}"`])
+              newNotifications_.push([`${n.id}`, `A new event has been approved "${result1[1][0].eventName}"`])
             })
 
             sqldb.query(`insert into adminnotification(adminId,notification) values ?`, [newNotifications_], (err, result__) => {
@@ -379,7 +379,7 @@ router.get("/approve/:evid", async (req,
 
 
           io.emit("new event", `${req.params.evid}`)
-          io.emit("new event approved by oic for eao", `${req.params.evid}`)
+          io.emit("A new event approved by OIC for EAO", `${req.params.evid}`)
 
 
 
@@ -399,7 +399,7 @@ router.get("/approve/:evid", async (req,
 
 
 
-      res.send("event was succesfully  approved")
+      res.send("Event was succesfully  approved!")
       console.log(result)
     })
 
@@ -417,15 +417,21 @@ router.get("/approve/:evid", async (req,
 router.get("/delete/:evid", async (req,
   res) => {
 
-  let sqldb = req.con
+  //let 
+  sqldb = req.con
 
   sqldb.query(`update event set eventStatus = 0 where id = ${req.params.evid} `, (err, result) => {
 
     if (err) {
-      res.send("there was an error: " + err)
+      console.log(err)
+      //res.send("there was an error: " + err)
+      res.send(err)
+      return
     }
-
-    res.send("event was successfully declined")
+    
+    io = req.io;
+    res.send("Event was successfully declined!")
+    console.log(result)
 
   })
 
