@@ -285,7 +285,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
 
 
-        res.send("Please ask the student to login with the following detail" + '<br>'+"Student Id:"+req.body.studentno + "<br>"+"password:"+req.body.password)
+        res.send("Please ask the student to login with the following details" + '<br>'+"Student Id:"+req.body.studentno + "<br>"+"Password:"+req.body.password)
 
         console.log(result)
       })
@@ -447,7 +447,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
         console.log("inserted Id " + JSON.stringify(result))*/
 
 
-        res.send("event was created succesfully")
+        res.send("Event was created succesfully.")
 
         console.log(result)
 
@@ -510,7 +510,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
 
 
-            res.send(`ask the EAO to login with the follwoing: <br> adminid:${req.body.idnumber} <br> password:${req.body.password}`)
+            res.send(`Ask the Event & Activity Organizer to login with the following: <br> Admin Id:${req.body.idnumber} <br> Password:${req.body.password}`)
 
 
 
@@ -568,7 +568,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
 
 
-           res.send(`ask the oic to login with the follwoing: <br> adminid:${req.body.idnumber} <br> password:${req.body.password}`)
+           res.send(`Ask the Officer-In-Charge to login with the follwoing: <br> Admin Id:${req.body.idnumber} <br> Password:${req.body.password}`)
 
         console.log(result)
 
@@ -701,7 +701,7 @@ router.post("/change_password/:adminid",(req,res)=>{
           return ;
         }
 
-        res.send("password was changed successfully")
+        res.send("Password was changed successfully.")
         return ;
       })
     }
