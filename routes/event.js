@@ -428,7 +428,7 @@ router.get("/delete/:evid", async (req,
       return
     }
 
-    io = req.io;
+    //io = req.io;
     res.send("Event was successfully declined!")
     console.log(result)
 
