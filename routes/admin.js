@@ -267,7 +267,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
 
     //mysql
-    sqldb.query(`insert into student(studentNo,email,surname,contactNo,firstName,address,middleName,course,password,emergencyName,emergencyNumber,academicYearStarted) values('${req.body.studentno}','${req.body.email}','${req.body.surname}','${req.body.contactno}','${req.body.firstname}','${req.body.address}', '${req.body.middlename}', '${req.body.course}','${req.body.password}','${req.body.emername}','${req.body.emerno}','${req.body.academicyearstarted}')`,(err,result)=>{
+    sqldb.query(`insert into student(studentNo,email,surname,contactNo,firstName,address,middleName,course,password,emergencyName,emergencyNumber,lackingHours,academicYearStarted) values('${req.body.studentno}','${req.body.email}','${req.body.surname}','${req.body.contactno}','${req.body.firstname}','${req.body.address}', '${req.body.middlename}', '${req.body.course}','${req.body.password}','${req.body.emername}','${req.body.emerno}','${req.body.lackinghours}','${req.body.academicyearstarted}')`,(err,result)=>{
         if(err) {
           res.send(err)
           console.log(err)

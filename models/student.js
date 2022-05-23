@@ -13,6 +13,7 @@ let studentSchema = mongoose.Schema({
   password:{type:String},
   emergencyName:{type:String},
   emergencyNumber:{type:String},
+  lackingHours:{type:Number},
   joinedEvents:[{type:mongoose.Schema.Types.ObjectId,ref:"events"}],
   joinedActivities:[{type:mongoose.Schema.Types.ObjectId,ref:"activities"}]
 })
