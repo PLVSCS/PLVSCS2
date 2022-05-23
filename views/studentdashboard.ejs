@@ -225,7 +225,7 @@
             if(searchedResult.length !=0) {
             
             for(event of searchedResult) {
-          ReporteEvents += `  <div onclick="join('/event/join/${event.id}/${student}')" class="row w-50 shadow">
+          ReporteEvents += `  <div onclick="join('/event/join/${event.id}/${student}')" class="col w-50 shadow">
           
           <p class="text-center">Event Name: ${event.eventName} </p>
           <br>
@@ -269,7 +269,7 @@
         function getEvents(a) {
 
     async function fetchText(k) {
-      let ReporteEvents = `<div class="row" >` ;
+      let ReporteEvents = `<div >` ;
       let endEvent = `</div>` ;
       let toBeFiltered ;
 //      let arr = [] ;
@@ -289,7 +289,7 @@
 
 
        for(event of arr) {
-          ReporteEvents += ` <div onclick="join('/event/join/${event.id}/${student}')" class="row  w-50 shadow">
+          ReporteEvents += ` <div onclick="join('/event/join/${event.id}/${student}')" class="w-50 shadow">
           
           <p class="text-center">Event Name: ${event.eventName} </p>
           <br>
