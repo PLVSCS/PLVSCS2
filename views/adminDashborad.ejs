@@ -488,82 +488,75 @@
     
     
     StudentAcct = `   <div class="mx-auto w-75  rounded p-4" style="background-color:silver; border:1px solid white ">
-      
-      <h1 class="text-center"> Student's Information</h1>
-      <br>
-      <br>
-      
-      
-<form class="form-group" method="post" action="admin/create/student">
-  
 
-  <div class="row">
+<h1 class="text-center"> Student's Information</h1>
+<br>
+<br>
+
+
+<form class="form-group" method="post" action="admin/create/student">
+
+
+<div class="row">
+<div class="col-md-6">
+<label for="surname"> Student No: </label>
+<br>
+<input id="formated" onkeyup="format()" class="form-control" name="studentno" type="" Required>
+</div>
+
+<div class="col-md-6">
+<label for="email"> Email: </label>
+<input id="email" class="form-control" name="email" Required>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-6">
+<label for="fname">Surname: </label>
+<br>
+<input id="fname" class="form-control" name="surname" Required>
+</div>
+
+<div class="col-md-6">
+<label for="username"> Contact No: </label>
+<input id="username" class="form-control" name="contactno" Required>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-6">
+<label for="mname">First Name:  </label>
+<br>
+<input id="mname" class="form-control" name="firstname" Required>
+</div>
+
+<div class="col-md-6">
+<label for="address"> Address: </label>
+<input id="address" class="form-control" name="address" Required>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-6">
+<label for="idn"> Middle Name:  </label>
+<br>
+<input id="idn" class="form-control" name="middlename" >
+</div>
     <div class="col-md-6">
-  <label for="surname"> Student No: </label>
-  <br>
-  <input id="formated" onkeyup="format()" class="form-control" name="studentno" type="text" required>
-  </div>
-  
-  <div class="col-md-6">
-  <label for="email"> Email: </label>
-  <input id="email" class="form-control" name="email" required>
-  </div>
-   </div>
-  
-    <div class="row">
-    <div class="col-md-6">
-  <label for="fname">Surname: </label>
-  <br>
-  <input id=fname"" class="form-control" name="surname" required>
-  </div>
-  
-  <div class="col-md-6">
-  <label for="username"> Contact No: </label>
-  <input id="username" class="form-control" name="contactno" required>
-  </div>
-   </div>
-  
-    <div class="row">
-    <div class="col-md-6">
-  <label for="mname">First Name:  </label>
-  <br>
-  <input id="mname" class="form-control" name="firstname" required>
-  </div>
-  
-  <div class="col-md-6">
-  <label for="address"> Address: </label>
-  <input id="address" class="form-control" name="address" required>
-  </div>
-   </div>
-   
-     <div class="row">
-    <div class="col-md-6">
-  <label for="idn"> Middle Name:  </label>
-  <br>
-  <input id="idn" class="form-control" name="middlename" >
-  </div>
-  <div class="col-md-6">
-  <label for="department"> Password: </label>
-  <input id="password" class="form-control" name="password" type="password" required>
-  </div>
-  
-    <!--<div class="col-md-6">
-  <label for="idn"> Student's Lacking Hours:  </label>
-  <br>
-  <input id="studentLackingHours" class="form-control" name="lackinghours" placeholder="160">
-  </div>-->
-  
-  
-  <div class="col-md-6"><!--
-  <label for="cno"> Username:  </label>
-  <input id="cno" class="form-control" name="username" required> -->
-  </div>
-  </div>
-  
-    <div class="row">
-    <div class="col-md-6">
-  <label for="dcode"> Course: </label>
-  <br>
+    <label for="department"> Password: </label>
+    <input type="password" id="password" class="form-control" name="password" Required>
+    </div>
+<!--
+<div class="col-md-6">
+<label for="cno"> Username:  </label>
+<input id="cno" class="form-control" name="username" Required>
+</div>-->
+</div>
+
+<div class="row">
+<div class="col-md-6">
+<label for="dcode"> Course: </label>
+<br>
   <select class="form-control" name="course" required>
   
   <option>      Bachelor of Science in Electrical Engineering </option> 
@@ -589,44 +582,43 @@
   
   
   </select>
-  
-    <br>
-<label for="department"> Academic Year Started: </label>
-<input class="form-control" value="13-14" name="academicyearstarted" >
-
-  
-  
- <!-- <input id="dcode" class="form-control" name="course" required> -->
-  </div>
-  
-  
-   </div>
-
-   <br>
-   
-  <!-- 
-     <h5 class="text-center" style="text-align:center"> Contact No In case of Emergency </h5>
-       <div class="row">
-     
-       
-    <div class="col-md-6">
-  <label for="dcode"> Name: </label>
   <br>
-  <input id="dcode" class="form-control" name="emername" required>
-  </div>
-  
-  <div class="col-md-6">
-  <label for="department"> No: </label>
-  <input type="password" id="password" class="form-control" name="emerno" required>
-  </div>
-   </div> -->
 
-   <br>
-   <br>
-   
-   
-   
-     <div class="row">
+
+<!--<input id="dcode" class="form-control" name="course" Required>-->
+</div>
+
+    <div class="col-md-6">
+      <label for="lackinghours"> Lacking Hours: </label>
+      <input class="form-control" value="160" name="lackinghours">
+    </div>
+</div>
+
+<div class="row">
+
+
+<div class="col-md-6">
+  <label for="department"> Academic Year Started: </label>
+<input class="form-control" value="13-14" name="academicyearstarted" >
+</div>
+
+<div class="col-md-6">
+
+</div>
+<br>
+
+<!--
+<h5 class="text-center" style="text-align:center"> Contact No In case of Emergency </h5>
+
+</div>-->
+
+<br>
+<br>
+
+
+
+
+<div class="row">
     <div class="col-md-0">
 
   
@@ -640,11 +632,24 @@
   </div>
    </div>
   
-  
-  
 
-  
-  
+
+<br>
+
+<!--
+
+<cent-er>
+<center><label for='inputt'> Upload an excel file for mass account creation, <br>the excel file does not need a title per column but must follow this format: <br> <br> studentNo, email, surname, contactNO, firstname, address, middleName, course, password, academic year</label> </center>
+
+ <input class='form-control' type="file" id='inputt' onchange="massReg()">   
+  </center>
+
+
+-->
+
+
+
+
   
   
 </form>
