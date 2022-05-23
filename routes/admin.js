@@ -373,7 +373,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
           let newNotifications = []
 
           result1[0].forEach((n)=>{
-            newNotifications.push([`${n.id}`,`a new event has been created "${result1[1][0].eventName}"`])
+            newNotifications.push([`${n.id}`,`A new event has been created "${result1[1][0].eventName}"`])
           })
 
           sqldb.query(`insert into adminnotification(adminId,notification) values ?`,[newNotifications],(err,result)=>{
