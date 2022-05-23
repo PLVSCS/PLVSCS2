@@ -417,8 +417,7 @@ router.get("/approve/:evid", async (req,
 router.get("/delete/:evid", async (req,
   res) => {
 
-  //let 
-  sqldb = req.con
+  let sqldb = req.con
 
   sqldb.query(`update event set eventStatus = 0 where id = ${req.params.evid} `, (err, result) => {
 
@@ -428,7 +427,7 @@ router.get("/delete/:evid", async (req,
       res.send(err)
       return
     }
-    
+
     io = req.io;
     res.send("Event was successfully declined!")
     console.log(result)
