@@ -204,7 +204,7 @@
           eventsAndActivities()
           
           
-          let ReporteEvents = ` <br> <br> <div class="row" >` ;
+          let ReporteEvents = ` <br> <br> <div>` ;
       let endEvent = `</div>` ;
           
           
@@ -225,7 +225,7 @@
             if(searchedResult.length !=0) {
             
             for(event of searchedResult) {
-          ReporteEvents += `  <div onclick="join('/event/join/${event.id}/${student}')" class="col w-50 shadow">
+          ReporteEvents += `  <div onclick="join('/event/join/${event.id}/${student}')" class="w-50 shadow">
           
           <p class="text-center">Event Name: ${event.eventName} </p>
           <br>
@@ -396,14 +396,14 @@
   function cancelParticipation(a) {
     if(a==0) {
       
-      let ReporteEvents = ` <br> <br><div class="row" >` ;
+      let ReporteEvents = ` <br> <br><div >` ;
       let endEvent = `</div>`
       
       
       axios.get(`/event/participating_in/${student.trim()}`).then((res)=>{
         
         for(event of res.data) {
-             ReporteEvents += ` <div onclick="cancelParticipation('/event/cancelParticipation/${event.id}/${student.trim()}')" class=" col   w-50 shadow">
+             ReporteEvents += ` <div onclick="cancelParticipation('/event/cancelParticipation/${event.id}/${student.trim()}')" class="w-50 shadow">
           
           <p class="text-center">Event Name: ${event.eventName} </p>
           <br>
