@@ -466,12 +466,13 @@
     axios.get(`/student/dashboard/${student.trim()}`).then((response)=>{
       
      let  hrs = 0 ;
-   let   numberOfActivitiesJoined = 0 
+    let numberOfActivitiesJoined = 0 
     let counter = 0
     let eventRows = "" 
-     let lhrs = response.data[0].lackingHours;
-      
+    let lhrs;
+
       for(hr of response.data[0]) {
+        lhrs += hr.lackingHours;
         hrs += parseInt(hr.hourRendered) ;
         numberOfActivitiesJoined += 1 ;
         eventRows += `
