@@ -225,7 +225,7 @@
             if(searchedResult.length !=0) {
             
             for(event of searchedResult) {
-          ReporteEvents += `  <div onclick="join('/event/join/${event.id}/${student}')" class=" col   w-50 shadow">
+          ReporteEvents += `  <div onclick="join('/event/join/${event.id}/${student}')" class="row w-50 shadow">
           
           <p class="text-center">Event Name: ${event.eventName} </p>
           <br>
@@ -289,7 +289,7 @@
 
 
        for(event of arr) {
-          ReporteEvents += ` <div onclick="join('/event/join/${event.id}/${student}')" class=" col   w-50 shadow">
+          ReporteEvents += ` <div onclick="join('/event/join/${event.id}/${student}')" class="row  w-50 shadow">
           
           <p class="text-center">Event Name: ${event.eventName} </p>
           <br>
