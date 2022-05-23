@@ -469,10 +469,10 @@
     let numberOfActivitiesJoined = 0 
     let counter = 0
     let eventRows = "" 
-    let lhrs;
+    
 
       for(hr of response.data[0]) {
-        lhrs += hr.lackingHours;
+       
         hrs += parseInt(hr.hourRendered) ;
         numberOfActivitiesJoined += 1 ;
         eventRows += `
@@ -488,6 +488,8 @@
     <td>  ${hr.isValidated ==1 ?  "Validated" : "Not Yet Validated"} </td>
         </tr>
         `
+        console.log(response.data[0]);
+        console.log(JSON.stringify(hr));
       }
       
       
@@ -533,7 +535,7 @@
     </div>
     <div class=" p-1 col-4" style="background-color: #173979">
       Hours Lacking <br>
-      ${lhrs-hrs_h}
+      ${160-hrs_h}
     </div>
         
   
