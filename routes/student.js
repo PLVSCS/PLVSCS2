@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const studentdb = require('../models/student');
-
+const sessions = require('express-session');
 var base64ToImage = require('base64-to-image');
 
 var QRCode = require('qrcode')
@@ -10,11 +10,23 @@ var QRCode = require('qrcode')
 
 
 router.get('/', (req, res) => {
+
+  
+  // session=req.session;
+  // if(!session.userid){
+  //   res.send(403);
+  //   return;
+  // }
+
   res.render('student')
 })
 
 
 router.post('/', async (req, res) => {
+
+
+
+
 
   sqldb = req.con;
   // mysql
@@ -25,6 +37,13 @@ router.post('/', async (req, res) => {
       console.log(err)
       return
     }
+
+
+    session=req.session;
+    session.userid=req.body.studentid;
+    console.log(req.session)
+
+
 
     currentStudent = result[0]
     let noOfNotification
@@ -58,6 +77,14 @@ router.post('/', async (req, res) => {
 
 router.post("/change_password/:studentid", (req, res) => {
 
+  session=req.session;
+  if(!session.userid){
+    res.send(403);
+    return;
+  }
+
+
+
   sqldb = req.con;
 
   sqldb.query(`select * from student where id = ${req.params.studentid}`, (err, result) => {
@@ -90,6 +117,14 @@ router.post("/change_password/:studentid", (req, res) => {
 
 router.get("/dashboard/:studentid", (req, res) => {
 
+
+  session=req.session;
+  if(!session.userid){
+    res.send(403);
+    return;
+  }
+
+
   sqldb = req.con;
 
   sqldb.query(`select * from eventandwishingtoparticipate join event on eventandwishingtoparticipate.eventId = event.id  
@@ -116,6 +151,14 @@ router.get("/dashboard/:studentid", (req, res) => {
 //console.log(allStudent)
 
 router.get("/notifications/:studentid", (req, res) => {
+
+
+  session=req.session;
+  if(!session.userid){
+    res.send(403);
+    return;
+  }
+
 
   sqldb = req.con
 
@@ -144,6 +187,13 @@ router.get("/notifications/:studentid", (req, res) => {
 
 
 router.get(`/all_notification/:studentid`, (req, res) => {
+
+
+  session=req.session;
+  if(!session.userid){
+    res.send(403);
+    return;
+  }
 
   sqldb = req.con;
 

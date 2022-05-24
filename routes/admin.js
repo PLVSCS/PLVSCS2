@@ -32,6 +32,13 @@ router.get('/',(req,res)=>{
 
 router.post("/validate_action/:eventid",(req,res)=>{
 
+
+  session=req.session;
+  if(!session.userid){
+    res.send(403);
+    return;
+  }
+
   sqldb = req.con
 
   let studentsid = req.body.studentid;
@@ -91,6 +98,12 @@ router.post("/validate_action/:eventid",(req,res)=>{
 
 router.get("/list_of_event/:adminid",(req,res)=>{
 
+  session=req.session;
+  if(!session.userid){
+    res.send(403);
+    return;
+  }
+
   sqldb = req.con ;
 
   sqldb.query(`select * from adminandcreatedevent join event on adminandcreatedevent.eventId = event.id where adminId = ${req.params.adminid}`,(err,result)=>{
@@ -108,6 +121,13 @@ router.get("/list_of_event/:adminid",(req,res)=>{
 
 
 router.get("/list_of_event_approved/:adminid",(req,res)=>{
+
+
+  session=req.session;
+  if(!session.userid){
+    res.send(403);
+    return;
+  }
 
   sqldb = req.con ;
 
@@ -134,6 +154,15 @@ router.get("/list_of_event_approved/:adminid",(req,res)=>{
 
 
 router.post('/',async(req,res)=>{
+
+
+  session=req.session;
+  if(!session.userid){
+    res.send(403);
+    return;
+  }
+
+
   sqldb = req.con
   //let incoming = await admindb.findOne({idNo:req.body.adminid})  ;
  let incomingMysql ;
@@ -258,6 +287,13 @@ router.post('/',async(req,res)=>{
 
 
 router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
+
+
+  session=req.session;
+  if(!session.userid){
+    res.send(403);
+    return;
+  }
 
   sqldb = req.con ;
   io = req.io  ;
@@ -682,6 +718,14 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
 
 router.post("/change_password/:adminid",(req,res)=>{
+
+  session=req.session;
+  if(!session.userid){
+    res.send(403);
+    return;
+  }
+
+
   sqldb = req.con ;
 
   sqldb.query(`select * from admin where idNo = ${req.params.adminid}`,(err,result)=>{
@@ -715,6 +759,13 @@ router.post("/change_password/:adminid",(req,res)=>{
 
 
 router.post('/mass_account',(req,res)=>{
+
+
+  session=req.session;
+  if(!session.userid){
+    res.send(403);
+    return;
+  }
 
 sqldb = req.con
 
@@ -785,6 +836,13 @@ res.send(inff)
 
 router.get("/no_of_notification/:adminid",(req,res)=>{
 
+
+  session=req.session;
+  if(!session.userid){
+    res.send(403);
+    return;
+  }
+
   sqldb = req.con ;
 
 
@@ -804,6 +862,13 @@ router.get("/no_of_notification/:adminid",(req,res)=>{
 
 
 router.get("/allnotification/:adminid",(req,res)=>{
+
+
+  session=req.session;
+  if(!session.userid){
+    res.send(403);
+    return;
+  }
 
   sqldb = req.con ;
 

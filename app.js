@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+const sessions = require('express-session');
 var path = require('path');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
@@ -8,11 +9,16 @@ var mysql      = require('mysql');
 
 var connection = mysql.createConnection({
   host     :'localhost',
-  user     :'plvscs',
-  password :'plvscsdb2022',
-  database :'plvscsdb',
+  user     :'root',
+  password :'',
+  database :'plvscdb',
   multipleStatements: true
 });
+
+
+
+
+
 
 
 /*
@@ -57,7 +63,9 @@ connection.query(sql,(err,result)=>{
   
 })  */
 
-
+var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 
 const QrScanner = require('qr-scanner')
@@ -68,19 +76,30 @@ var adminRouter = require('./routes/admin');
 var studentRouter = require('./routes/student');
 var eventRouter = require('./routes/event');
 
-var app = express();
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
 
+
+
+
+
+
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(sessions({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized:true,
+    cookie: { maxAge: oneDay },
+    resave: false 
+}));
+
+
+
+
+app.use(cookieParser());
 
 
 io.on('connection',async(socket)=>{
   
   console.log("a user connected")
-  
-  
-  
-  
+
 })
 
 
@@ -136,6 +155,7 @@ app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
 app.use('/student', studentRouter);
 app.use('/event', eventRouter);
+app.use('/reset-password', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
