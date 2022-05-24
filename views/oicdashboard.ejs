@@ -621,7 +621,7 @@
             <td> ${student.timeIn}   </td>
             <td> ${student.timeOut}   </td>   
             <td> ${student.hours_multiplier}   </td> 
-            <td>  <input id="${student.id}" > <button onclick="assignRenderedHours('/event/inputrenderedhours/${arr[0][0].id}/${student.id}/','${arr[0][0].id}','${student.id}')"> save  </button> </td>
+            <td>  <input id="${student.id}" > <button onclick="assignRenderedHours('/event/inputrenderedhours/${arr[0][0].id}/${student.id}/','${arr[0][0].id}','${student.id}')"> Save  </button> </td>
         
              
         
@@ -997,25 +997,34 @@
         let response = await fetch(g);
         let data = await response.text()
         let arr = JSON.parse(data)
-        let ReporteEvents = `<div class="row" >`;
+        let ReporteEvents = `<div>`;
         let endEvent = `</div>`
 
 
         for (event of arr) {
-          ReporteEvents += ` <div style="width:200;height:250" onclick="" class=" col    shadow">
+          ReporteEvents += ` <div style="width:200;height:250" onclick="" class="w-100 shadow">
           
           <div class="row">
           <div class="col">
-          <p class="text-center">Event Name: ${event.eventName} </p>
+          <p class="text-center"><span style="font-weight: 600;">Event Name: </span>${event.eventName} </p>
           <br>
-          <p class="text-center">Event No Of Required Hours: ${event.eventHours} </p>
-          <p class="text-center">Event Number of Students Allowed to Participate: ${event.eventNoOfStudent} </>
+          <p class="text-center"><span style="font-weight: 600;">Credited Hours: </span>${event.eventHours} </p>
+          <p class="text-center"><span style="font-weight: 600;">Participants Limit: </span>${event.eventNoOfStudent == "Unlimited Number of Student" ? "No Limit": event.eventNoOfStudent } </>
           <br>
           
-     <p class="text-center">Event Venue: ${event.eventVenue} </p>
+     <p class="text-center"><span style="font-weight: 600;">Event Venue: </span>${event.eventVenue} </p>
           <br>
-               <p class="text-center">Event Date and Time: ${event.dateAndTime} </p>
-          <br> </div>
+               <p class="text-center"><span style="font-weight: 600;">Event Date: </span>${event.eventStartDate} </p>
+          <br> 
+          <p class="text-center"><span style="font-weight: 600;">Things to Bring: </span>${event.eventNeededMaterial} </p>
+          <br>
+          <p class="text-center"><span style="font-weight: 600;">Time: </span>${event.dateAndTime} </p>
+          <br>
+          <p class="text-center"><span style="font-weight: 600;">School Year: </span>${event.schoolYear} </p>
+          <br>
+          <p class="text-center"><span style="font-weight: 600;">Semester: </span>${event.semester} </p>
+          <br>
+          </div>
           
           <div class="col">
           
@@ -1023,15 +1032,15 @@
           
                 <a class="mb-5" download href="/${event.scannedImage}"><button class="btn btn-primary"> Download Letter of Approval </button></a>  </div>
                  
-          <br>
-          <br>
+          
 </div>
-
+<br>
+          <br>
 <div class="row">
           <button onclick="decide('/event/approve/${event.id}')" class="btn-sm btn-primary col" id=""> Approve </button>
 
 
-          <button onclick="decide('/event/delete/${event.id}')" class="btn-sm btn-primary col"  id=""> Decline </button>   </div>
+          <button onclick="decide('/event/delete/${event.id}')" class="btn-sm btn-danger col"  id=""> Decline </button>   </div>
           </div>` ;
         }
 
@@ -1746,7 +1755,7 @@
 <div class="col-md-6">
 <label for="fname">Surname: </label>
 <br>
-<input id=fname"" class="form-control" name="surname" Required>
+<input id="fname" class="form-control" name="surname" Required>
 </div>
 
 <div class="col-md-6">
@@ -1815,32 +1824,33 @@
   
   </select>
   <br>
-<label for="department"> Academic Year Started: </label>
-<input class="form-control" value="13-14" name="academicyearstarted" >
+
 
 <!--<input id="dcode" class="form-control" name="course" Required>-->
 </div>
 
-
+    <div class="col-md-6">
+      <label for="lackinghours"> Lacking Hours: </label>
+      <input class="form-control" value="160" name="lackinghours">
+    </div>
 </div>
 
-<br>
-
-<!--
-<h5 class="text-center" style="text-align:center"> Contact No In case of Emergency </h5>
 <div class="row">
 
 
 <div class="col-md-6">
-<label for="dcode"> Name: </label>
-<br>
-<input id="dcode" class="form-control" name="emername" Required>
+  <label for="department"> Academic Year Started: </label>
+<input class="form-control" value="13-14" name="academicyearstarted" >
 </div>
 
 <div class="col-md-6">
-<label for="department"> No: </label>
-<input type="tel" id="password" class="form-control" name="emrno" Required>
+
 </div>
+<br>
+
+<!--
+<h5 class="text-center" style="text-align:center"> Contact No In case of Emergency </h5>
+
 </div>-->
 
 <br>
@@ -1848,19 +1858,13 @@
 
 
 
-<div class="row">
-  <div class="col-md-0">
+
+
+
+
+<input id="caccount" class="form-control bg-primary text-white" type="submit" value="Create Account" >
 
   
-<!--<input id="gpassword" class="form-control bg-primary text-white" name="generatepassword" value="Generate Password" type="button" onclick="generatePassword()">-->
-</div>
-
-
-<div class="col-md-6">
-<input id="caccount" class="form-control bg-primary text-white" type="submit" value="Create Account" >
-</div>
- </div>
-
 
 
 <br>

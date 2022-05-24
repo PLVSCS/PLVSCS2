@@ -701,11 +701,12 @@ router.get("/inputrenderedhours/:eventid/:studentid/:hours", async (req,
 
       if (err) {
         console.log(err)
+        res.send("Timeout field is empty.");
         return
       }
 
 
-      res.send("Timeout has been succesfully modifies")
+      res.send("Timeout has been succesfully modified.")
       console.log(result)
 
     })
@@ -734,7 +735,7 @@ router.get("/hour_rendered/:eventid/:studentid/:hours", async (req,
       }
 
 
-      res.send("Hours rendered has been succesfully updated")
+      res.send("Hours rendered has been succesfully updated.")
       console.log(result)
 
     })

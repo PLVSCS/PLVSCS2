@@ -327,7 +327,7 @@
 
 
 
-    eventc = `   <h1 class="text-center"> Create An Event</h1>
+    eventc = `   <h1> Create An Event</h1>
 
     <form class="w-75 form-group" method="post" action="/admin/create/event" enctype="multipart/form-data">
 
@@ -687,7 +687,7 @@ Image of Approval Letter” <br> "File types allowed: .jpg, .jpeg,
             <td> ${student.timeIn}   </td>
             <td> ${student.timeOut}   </td>   
             <!-- <td> ${student.hourRendered} </td> -->
-            <td>  <input id="${student.id}" > <button onclick="assignRenderedHours('/event/inputrenderedhours/${arr[0][0].id}/${student.id}/','${arr[0][0].id}','${student.id}')"> save  </button> </td>
+            <td>  <input required id="${student.id}" > <button onclick="assignRenderedHours('/event/inputrenderedhours/${arr[0][0].id}/${student.id}/','${arr[0][0].id}','${student.id}')"> Save  </button> </td>
             </tr>`;
           }
 

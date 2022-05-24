@@ -225,16 +225,20 @@
             if(searchedResult.length !=0) {
             
             for(event of searchedResult) {
-          ReporteEvents += `  <div onclick="join('/event/join/${event.id}/${student}')" class="w-50 shadow">
+          ReporteEvents += `  <div onclick="join('/event/join/${event.id}/${student}')" class="w-100 shadow">
           
-          <p class="text-center">Event Name: ${event.eventName} </p>
+          <p class="text-center"><span style="font-weight: 600;">Event Name: </span>${event.eventName} </p>
           <br>
-            <p class="text-center">Event No Of Required Hours: ${event.eventHours} </p>
-              <p class="text-center">Event Number of Students Allowed to Participate: ${event.eventNoOfStudent} </p>
+            <p class="text-center"><span style="font-weight: 600;">Credited Hours: </span>${event.eventHours} </p>
+              <p class="text-center"><span style="font-weight: 600;">Participants Limit: </span>${event.eventNoOfStudent} </p>
               <br>
-                  <p class="text-center">Event Venue: ${event.eventVenue} </p>
+                  <p class="text-center"><span style="font-weight: 600;">Event Venue: </span>${event.eventVenue} </p>
           <br>
-               <p class="text-center">Event Date and Time: ${event.dateAndTime} </p>
+               <p class="text-center"><span style="font-weight: 600;">Event Date: </span>${event.dateAndTime} </p>
+          <br>
+          <p class="text-center"><span style="font-weight: 600;">Things to Bring: </span>${event.eventNeededMaterial} </p>
+          <br>
+          <p class="text-center"><span style="font-weight: 600;">Time:</span> ${event.dateAndTime} </p>
           <br>
           <button class="btn btn-primary"> Join </button>
           <br>
@@ -289,16 +293,20 @@
 
 
        for(event of arr) {
-          ReporteEvents += ` <div onclick="join('/event/join/${event.id}/${student}')" class="w-50 shadow">
+          ReporteEvents += ` <div onclick="join('/event/join/${event.id}/${student}')" class="w-100 shadow">
           
-          <p class="text-center">Event Name: ${event.eventName} </p>
+          <p class="text-center"><span style="font-weight: 600;">Event Name: </span>${event.eventName} </p>
           <br>
-            <p class="text-center">Event No Of Required Hours: ${event.eventHours} </p>
-              <p class="text-center">Event Number of Students Allowed to Participate: ${event.eventNoOfStudent} </p>
+            <p class="text-center"><span style="font-weight: 600;">Credited Hours: </span>${event.eventHours} </p>
+              <p class="text-center"><span style="font-weight: 600;">Participants Limit:</span> ${event.eventNoOfStudent == "Unlimited Number of Student" ? "No Limit": event.eventNoOfStudent }</p>
               <br>
-                  <p class="text-center">Event Venue: ${event.eventVenue} </p>
+                  <p class="text-center"><span style="font-weight: 600;">Event Venue:</span> ${event.eventVenue} </p>
           <br>
-               <p class="text-center">Event Date : ${event.eventStartDate} </p>
+               <p class="text-center"><span style="font-weight: 600;">Event Date : </span>${event.eventStartDate} </p>
+          <br>
+          <p class="text-center"><span style="font-weight: 600;">Things to bring:</span> ${event.eventNeededMaterial} </p>
+          <br>
+          <p class="text-center"><span style="font-weight: 600;">Time:</span> ${event.dateAndTime} </p>
           <br>
           <button class="btn btn-primary"> Join </button>
           <br>
@@ -403,16 +411,20 @@
       axios.get(`/event/participating_in/${student.trim()}`).then((res)=>{
         
         for(event of res.data) {
-             ReporteEvents += ` <div onclick="cancelParticipation('/event/cancelParticipation/${event.id}/${student.trim()}')" class="w-50 shadow">
+             ReporteEvents += ` <div onclick="cancelParticipation('/event/cancelParticipation/${event.id}/${student.trim()}')" class="w-100 shadow">
           
-          <p class="text-center">Event Name: ${event.eventName} </p>
+          <p class="text-center"><span style="font-weight: 600;">Event Name:</span> ${event.eventName} </p>
           <br>
-            <p class="text-center">Event No Of Required Hours: ${event.eventHours} </p>
-              <p class="text-center">Event Number of Students Allowed to Participate: ${event.eventNoOfStudent} </p>
+            <p class="text-center"><span style="font-weight: 600;">Credited Hours: </span>${event.eventHours} </p>
+              <p class="text-center"><span style="font-weight: 600;">Participants Limit: </span>${event.eventNoOfStudent == "Unlimited Number of Student" ? "No Limit": event.eventNoOfStudent }</p>
               <br>
-                  <p class="text-center">Event Venue: ${event.eventVenue} </p>
+                  <p class="text-center"><span style="font-weight: 600;">Event Venue: </span>${event.eventVenue} </p>
           <br>
-               <p class="text-center">Event Date and Time: ${event.dateAndTime} </p>
+               <p class="text-center"><span style="font-weight: 600;">Event Date:</span> ${event.eventStartDate} </p>
+          <br>
+          <p class="text-center"><span style="font-weight: 600;">Things to Bring: </span>${event.eventNeededMaterial} </p>
+          <br>
+          <p class="text-center"><span style="font-weight: 600;">Time:</span> ${event.dateAndTime} </p>
           <br>
           <button class="btn btn-danger text-white"> Cancel </button>
           <br>
@@ -454,12 +466,13 @@
     axios.get(`/student/dashboard/${student.trim()}`).then((response)=>{
       
      let  hrs = 0 ;
-   let   numberOfActivitiesJoined = 0 
+    let numberOfActivitiesJoined = 0 
     let counter = 0
     let eventRows = "" 
     
-      
+
       for(hr of response.data[0]) {
+       
         hrs += parseInt(hr.hourRendered) ;
         numberOfActivitiesJoined += 1 ;
         eventRows += `
@@ -475,9 +488,11 @@
     <td>  ${hr.isValidated ==1 ?  "Validated" : "Not Yet Validated"} </td>
         </tr>
         `
+       
+     
       }
       
-      
+      console.log(response.data[0]);
       
       
       let  hrs_h = 0 ;

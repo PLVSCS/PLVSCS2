@@ -303,7 +303,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
 
     //mysql
-    sqldb.query(`insert into student(studentNo,email,surname,contactNo,firstName,address,middleName,course,password,emergencyName,emergencyNumber,academicYearStarted) values('${req.body.studentno}','${req.body.email}','${req.body.surname}','${req.body.contactno}','${req.body.firstname}','${req.body.address}', '${req.body.middlename}', '${req.body.course}','${req.body.password}','${req.body.emername}','${req.body.emerno}','${req.body.academicyearstarted}')`,(err,result)=>{
+    sqldb.query(`insert into student(studentNo,email,surname,contactNo,firstName,address,middleName,course,password,emergencyName,emergencyNumber,lackingHours,academicYearStarted) values('${req.body.studentno}','${req.body.email}','${req.body.surname}','${req.body.contactno}','${req.body.firstname}','${req.body.address}', '${req.body.middlename}', '${req.body.course}','${req.body.password}','${req.body.emername}','${req.body.emerno}','${req.body.lackinghours}','${req.body.academicyearstarted}')`,(err,result)=>{
         if(err) {
           res.send(err)
           console.log(err)
@@ -321,7 +321,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
 
 
-        res.send("Please ask the student to login with the following detail" + '<br>'+"Student Id:"+req.body.studentno + "<br>"+"password:"+req.body.password)
+        res.send("Please ask the student to login with the following details" + '<br>'+"Student Id:"+req.body.studentno + "<br>"+"Password:"+req.body.password)
 
         console.log(result)
       })
@@ -409,7 +409,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
           let newNotifications = []
 
           result1[0].forEach((n)=>{
-            newNotifications.push([`${n.id}`,`a new event has been created "${result1[1][0].eventName}"`])
+            newNotifications.push([`${n.id}`,`A new event has been created "${result1[1][0].eventName}"`])
           })
 
           sqldb.query(`insert into adminnotification(adminId,notification) values ?`,[newNotifications],(err,result)=>{
@@ -483,7 +483,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
         console.log("inserted Id " + JSON.stringify(result))*/
 
 
-        res.send("event was created succesfully")
+        res.send("Event was created succesfully.")
 
         console.log(result)
 
@@ -546,7 +546,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
 
 
-            res.send(`ask the EAO to login with the follwoing: <br> adminid:${req.body.idnumber} <br> password:${req.body.password}`)
+            res.send(`Ask the Event & Activity Organizer to login with the following: <br> Admin Id:${req.body.idnumber} <br> Password:${req.body.password}`)
 
 
 
@@ -604,7 +604,7 @@ router.post('/create/:entity',upload.single('scannedimage'),async(req,res)=>{
 
 
 
-           res.send(`ask the oic to login with the follwoing: <br> adminid:${req.body.idnumber} <br> password:${req.body.password}`)
+           res.send(`Ask the Officer-In-Charge to login with the follwoing: <br> Admin Id:${req.body.idnumber} <br> Password:${req.body.password}`)
 
         console.log(result)
 
@@ -745,7 +745,7 @@ router.post("/change_password/:adminid",(req,res)=>{
           return ;
         }
 
-        res.send("password was changed successfully")
+        res.send("Password was changed successfully.")
         return ;
       })
     }
