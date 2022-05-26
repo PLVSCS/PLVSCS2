@@ -1,20 +1,32 @@
 const express = require('express');
 const router = express.Router();
 const studentdb = require('../models/student');
-
+const sessions = require('express-session');
 var base64ToImage = require('base64-to-image');
 
 var QRCode = require('qrcode')
 
-
+var aes256 = require('aes256');
 
 
 router.get('/', (req, res) => {
+
+  
+  // session=req.session;
+  // if(!session.userid){
+  //   res.send(403);
+  //   return;
+  // }
+
   res.render('student')
 })
 
 
 router.post('/', async (req, res) => {
+
+
+
+
 
   sqldb = req.con;
   // mysql
@@ -26,19 +38,45 @@ router.post('/', async (req, res) => {
       return
     }
 
+
+    
+
+    
+
+
+
     currentStudent = result[0]
     let noOfNotification
 
     console.log(result)
 
-    if (currentStudent && currentStudent.password == req.body.password) {
+    
+    var key = 'plvscs';
+    var encryptedpass = currentStudent.password;
+
+    var decryptedpass = aes256.decrypt(key,encryptedpass);
+
+
+    session=req.session;
+    session.userid=req.body.studentid;
+    session.userrow=currentStudent.id;
+    console.log(req.session)
+
+
+    if (currentStudent && decryptedpass == req.body.password) {
 
       sqldb.query(`select * from studentnoofnotification where studentId = ${currentStudent.id}`, (err, rows_) => {
 
+      
         QRCode.toDataURL(currentStudent.id.toString(), function (err, url) {
           studentqrCode = url;
-          var notif = rows_ ? rows_[0].noOfNotification : 0;
-          res.render('studentdashboard', { currentStudent, url, noOfNotification:  notif})
+          var notif = rows_.length > 0 ? rows_[0].noOfNotification : 0;
+          res.render('studentdashboard', { 
+            currentStudent, 
+            url, 
+            noOfNotification:  notif,
+            lackingHours:currentStudent.lackingHours
+          })
         })
 
       })
@@ -57,6 +95,14 @@ router.post('/', async (req, res) => {
 })
 
 router.post("/change_password/:studentid", (req, res) => {
+
+  session=req.session;
+  if(!session.userid){
+    res.send(403);
+    return;
+  }
+
+
 
   sqldb = req.con;
 
@@ -90,11 +136,19 @@ router.post("/change_password/:studentid", (req, res) => {
 
 router.get("/dashboard/:studentid", (req, res) => {
 
+
+  session=req.session;
+  if(!session.userid){
+    res.send(403);
+    return;
+  }
+
+
   sqldb = req.con;
 
-  sqldb.query(`select * from eventandwishingtoparticipate join event on eventandwishingtoparticipate.eventId = event.id  
-    where studentId = ${req.params.studentid} ;
-    select * from eventstudentandhours join event on eventstudentandhours.eventId = event.id  where studentId = ${req.params.studentid}
+  sqldb.query(`select * from eventandwishingtoparticipate join event on eventandwishingtoparticipate.eventId = event.id  where studentId = ${req.params.studentid};
+    select * from eventstudentandhours join event on eventstudentandhours.eventId = event.id  where studentId = ${req.params.studentid};
+    select * from student where id = '${req.params.studentid}'
     `, (err, result) => {
 
     if (err) {
@@ -102,7 +156,6 @@ router.get("/dashboard/:studentid", (req, res) => {
       return
     }
 
-    console.log("ggggg" + JSON.stringify(result))
 
     res.send(result)
   })
@@ -116,6 +169,14 @@ router.get("/dashboard/:studentid", (req, res) => {
 //console.log(allStudent)
 
 router.get("/notifications/:studentid", (req, res) => {
+
+
+  session=req.session;
+  if(!session.userid){
+    res.send(403);
+    return;
+  }
+
 
   sqldb = req.con
 
@@ -144,6 +205,13 @@ router.get("/notifications/:studentid", (req, res) => {
 
 
 router.get(`/all_notification/:studentid`, (req, res) => {
+
+
+  session=req.session;
+  if(!session.userid){
+    res.send(403);
+    return;
+  }
 
   sqldb = req.con;
 
