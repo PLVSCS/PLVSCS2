@@ -43,7 +43,7 @@ router.post('/import-accounts', upload.single('excelfile'), (req, res, next) => 
   let filename = req.file.filename;
   let importfor = req.body.accountfor;
 
-  let filepath = __basedir + '/public/uploads/' +filename;
+  let filepath = __dirname + '/public/uploads/' +filename;
 
   readXlsxFile(filepath).then((rows) => {
     // Remove Header ROW
