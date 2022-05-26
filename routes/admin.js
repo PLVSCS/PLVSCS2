@@ -795,11 +795,11 @@ router.post('/create/:entity', upload.single('scannedimage'), async (req, res) =
 
 router.post("/change_password/:adminid", (req, res) => {
 
-  session = req.session;
-  if (!session.userid) {
-    res.send(403);
-    return;
-  }
+  // session = req.session;
+  // if (!session.userid) {
+  //   res.send(403);
+  //   return;
+  // }
 
 
   sqldb = req.con;

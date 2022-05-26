@@ -96,11 +96,11 @@ router.post('/', async (req, res) => {
 
 router.post("/change_password/:studentid", (req, res) => {
 
-  session=req.session;
-  if(!session.userid){
-    res.send(403);
-    return;
-  }
+  // session=req.session;
+  // if(!session.userid){
+  //   res.send(403);
+  //   return;
+  // }
 
 
 
