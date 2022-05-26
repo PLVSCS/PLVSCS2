@@ -64,7 +64,13 @@ router.get('/new-password/:token/:usertype', function (req, res, next) {
         usertype:usertype
       });
     }else{
+
+
+      //dapat ganito. ikaw nalang mag edit
+      res.writeHead(200, {'Content-Type':'text/html'});
       res.write("<h1>token expired</h1><br><br><a href='/'>Back</a>");
+      res.end();
+
       return;
     }
   })
@@ -129,11 +135,19 @@ router.post('/verify/:token', function (req,res,next){
 
 
 
+          res.writeHead(200, {'Content-Type':'text/html'});
           res.write("<h1>Password Updated!</h1><br><br><a href='/'>Login</a>");
+          res.end();
+
 
 
         }else{
+          
+
+          res.writeHead(200, {'Content-Type':'text/html'});
           res.write("<h1>page expired</h1><br><br><a href='/'>Back</a>");
+          res.end();
+
           return;
         }
       })
