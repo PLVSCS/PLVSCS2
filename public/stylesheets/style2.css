@@ -37,7 +37,7 @@ a:focus {
     padding-top: 70px;
 }
 
-.fa-cog {
+.fa {
     color: white;
   }
 
@@ -176,5 +176,8 @@ a.article:hover {
     }
     #sidebarCollapse span {
         display: none;
+    }
+    .form-gap{
+        padding-top: 0;
     }
 }

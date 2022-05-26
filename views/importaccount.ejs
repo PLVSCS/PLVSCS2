@@ -4,25 +4,73 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Import Accounts by Batch</title>
+
+    
+    
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+  integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<!-- Our Custom CSS -->
+<link rel="stylesheet" href="/stylesheets/style2.css">
+
+
+
+<!-- Font Awesome JS -->
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+  integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+  crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+  integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+  crossorigin="anonymous"></script>
+
+    <link rel="shortcut icon" href="/images/PLVLOGO.png" sizes="16x16 32x32" type="image/png">
+    
 </head>
 <body>
     
-    <form action="/admin/import-accounts" enctype="multipart/form-data" method="post">
-        Import account for:
-        <br>
-        <select name="accountfor" id="accountfor">
-            <option value="" selected></option>
-            <option value="student">Student</option>
-            <option value="admin">EAO</option>
-        </select>
-        <br>
-        <br>
-        Upload excel file:
-        <br>
-        <input type="file" name="excelfile" id="excelfile">
-        <br><br><br>
-        <button type="submit">Start Import</button>
-    </form>
+   
+  </div>
+  <div class="form-gap" ></div>
+  <div class="container" >
+      <div class="row justify-content-center">
+          <div class="col-md-4 col-md-offset-4 shadow p-3 mb-5 rounded"  style="background-color:#173979;">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="text-center">
+                    <h3><i class="fa fa-upload fa-4x" style="color:#DBD6C2"></i></h3>
+                    <h2 class="text-center text-light">Import Account For:</h2>
+                    <p class="text-light">Choose the user type you wish to make an account.</p>
+                    <div class="panel-body">
+      
+                            
+                            <form action="/admin/import-accounts" enctype="multipart/form-data" method="post">
+                              <h6 class="text-center text-light"> Import account for:</h6>
+                              <br>
+                              <select class="form-select" name="accountfor" id="accountfor">
+                                  <option value="" selected></option>
+                                  <option value="student">Student</option>
+                                  <option value="admin">EAO</option>
+                              </select>
+                              <br>
+                              <br>
+                              <br>
+                              <br>
+                              
+                              <h6 class="text-center text-light">Upload excel file:</h6>
+                              <br>
+                              <input class="form-control" type="file" name="excelfile" id="excelfile">
+                              <br><br><br>
+                              <button class="btn btn-lg btn-light btn-block text-dark"  type="submit">Start Import</button>
+                              
+                          </form>
+      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+  </div>
 </body>
 </html>

@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
   host     :'localhost',
   user     :'plvscs',/*'root',*/
 password :'plvscsdb2022', /*'',*/
-database :'plvscsdb', /*'jrelozdb',*/
+database :'plvscsdb',/* 'jrelozdb',*/
   multipleStatements: true
 });
 

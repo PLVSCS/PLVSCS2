@@ -55,7 +55,7 @@ router.post('/import-accounts', upload.single('excelfile'), (req, res, next) => 
     let query = `INSERT INTO ${importfor} (id,studentNo,email,surname,contactNo,firstName,address,middleName,username,course,password,emergencyName,emergencyNumber,studentStatus,lackingHours,academicYearStarted) VALUES ?`;
     sqldb.query(query, [rows], (error, response) => {
        
-      res.write("<h1>Records Successfully Imported!</h1><br><br><a href='javascript:history.back(2)'>Go Back</a>");
+      res.write("<h1>Records Successfully Imported!</h1><br><br><b><a href='javascript:history.back(2)'>Go Back</a>");
 
     });
   });
