@@ -9,9 +9,12 @@ var mysql      = require('mysql');
 
 var connection = mysql.createConnection({
   host     :'localhost',
-  user     :'plvscs',/*'root',*/
-password :'plvscsdb2022', /*'',*/
-database :'plvscsdb',/* 'jrelozdb',*/
+  user     :'plvscs',
+password :'plvscsdb2022', 
+database :'plvscsdb',
+// user     :'root',
+// password :'',
+// database :'jrelozdb',
   multipleStatements: true
 });
 
