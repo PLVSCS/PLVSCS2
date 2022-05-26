@@ -198,7 +198,7 @@ router.get('/send-link/:usermail/:usertype', function (req, res, next) {
 
 
 
-  res.send({res:'<b>You will receive the password reset link to your email once it is verified.</a><br><br><a href="/">Back</a>'});
+  res.send({res:'alert("You will receive the password reset link to your email once it is verified.")</a><br><br><a href="/">Back</a>'});
 
   return;
 })
