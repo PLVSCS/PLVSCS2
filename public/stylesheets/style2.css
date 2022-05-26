@@ -37,6 +37,10 @@ a:focus {
     padding-top: 70px;
 }
 
+.fa-cog {
+    color: white;
+  }
+
 .navbar-btn {
     box-shadow: none;
     outline: none !important;
