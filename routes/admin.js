@@ -57,9 +57,9 @@ router.post('/import-accounts', upload.single('excelfile'), (req, res, next) => 
     sqldb.query(query, [rows], (error, response) => {
        
       res.writeHead(200, {'Content-Type':'text/html'});
-      res.send("<h1>Records Successfully Imported!</h1><br><br><b><a href='javascript:history.back(2)'>Go Back</a>");
+      res.write("<h1>Records Successfully Imported!</h1><br><br><b><a href='javascript:history.back(2)'>Go Back</a>");
       res.end();
-``
+
 
     });
   });
