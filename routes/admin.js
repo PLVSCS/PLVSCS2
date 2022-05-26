@@ -43,6 +43,8 @@ router.post('/import-accounts', upload.single('excelfile'), (req, res, next) => 
   res.writeHead(200, {'Content-Type':'text/plain'});
 res.write("<h1>Records Successfully Imported!</h1><br><br><b><a href='javascript:history.back(2)'>Go Back</a>");
 res.end();
+
+
 return;
   let filename = req.file.filename;
   let importfor = req.body.accountfor;
