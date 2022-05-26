@@ -303,11 +303,11 @@ router.get("/unapproved", async (req, res) => {
 
 router.get("/approve/:evid", async (req,res) => {
 
-  session=req.session;
-  if(!session.userid){
-    res.send(403);
-    return;
-  }
+  // session=req.session;
+  // if(!session.userid){
+  //   res.send(403);
+  //   return;
+  // }
 
   sqldb = req.con;
 
