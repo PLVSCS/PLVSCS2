@@ -11,7 +11,7 @@
  Target Server Version : 100703
  File Encoding         : 65001
 
- Date: 24/05/2022 11:32:49
+ Date: 26/05/2022 13:34:05
 */
 
 SET NAMES utf8mb4;
@@ -41,12 +41,12 @@ CREATE TABLE `admin`  (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES (1, 2020, 'jpolivar@gmail.com', 'Olivar', '09090909090', 'Jay Pee', '', 'jp', 0, 'NSTP', 'eao1', 'eao');
-INSERT INTO `admin` VALUES (2, 4040, 'lorraineangelilibatique@gmail.com', 'Libatique', '09090909090', 'Lorraine Angeli', '', 'lorr', 0, 'CEIT', 'sdf', 'oic');
+INSERT INTO `admin` VALUES (1, 2020, 'zolerjerwen@gmail.com', 'Olivar', '09090909090', 'Jay Pee', '', 'jp', 0, 'NSTP', 'Mn9h6E6K9XtcSTxQmdYtEkyo9ah9', 'eao');
+INSERT INTO `admin` VALUES (2, 4040, 'lorraineangelilibatique@gmail.com', 'Libatique', '09090909090', 'Lorraine Angeli', '', 'lorr', 0, 'CEIT', 'IOhsjbI6jvtF9UbzIo430RZZboSJ', 'oic');
 INSERT INTO `admin` VALUES (4, 19, 'kristaperlada@gmail.com', 'Perlada', '09225577861', 'Krista', ' ', NULL, 0, 'Accounting', '08141999', 'eao');
 INSERT INTO `admin` VALUES (5, 19, 'genfrancisco@gmail.com', 'Francisco', '09225577861', 'Geneva', ' ', NULL, 0, 'IT Department', 'genfrancisco', 'oic');
 INSERT INTO `admin` VALUES (6, 20, 'ccorazon645@gmail.com', 'Cruz', '09420509572', 'Corazon', 'Agustin', NULL, 0, 'Accounting', 'cruz645', 'eao');
-INSERT INTO `admin` VALUES (7, 20, 'juliocruz@gmail.com', 'Cruz', '09672180574', 'Julio', 'Sabado', NULL, 0, 'NSTP', 'cruz5065', 'oic');
+INSERT INTO `admin` VALUES (7, 20, 'zolerjerwen@gmail.com', 'Cruz', '09672180574', 'Julio', 'Sabado', NULL, 0, 'NSTP', 'Mn9h6E6K9XtcSTxQmdYtEkyo9ah9', 'oic');
 
 -- ----------------------------
 -- Table structure for adminandcreatedevent
@@ -71,6 +71,9 @@ INSERT INTO `adminandcreatedevent` VALUES (2020, 13);
 INSERT INTO `adminandcreatedevent` VALUES (2020, 14);
 INSERT INTO `adminandcreatedevent` VALUES (2020, 15);
 INSERT INTO `adminandcreatedevent` VALUES (2020, 16);
+INSERT INTO `adminandcreatedevent` VALUES (2020, 17);
+INSERT INTO `adminandcreatedevent` VALUES (2020, 18);
+INSERT INTO `adminandcreatedevent` VALUES (2020, 19);
 
 -- ----------------------------
 -- Table structure for adminnoofnotification
@@ -85,13 +88,13 @@ CREATE TABLE `adminnoofnotification`  (
 -- ----------------------------
 -- Records of adminnoofnotification
 -- ----------------------------
-INSERT INTO `adminnoofnotification` VALUES ('1', 0, 'eao');
-INSERT INTO `adminnoofnotification` VALUES ('2', 0, 'oic');
-INSERT INTO `adminnoofnotification` VALUES ('3', 5, 'eao');
-INSERT INTO `adminnoofnotification` VALUES ('4', 0, 'eao');
-INSERT INTO `adminnoofnotification` VALUES ('5', 2, 'oic');
-INSERT INTO `adminnoofnotification` VALUES ('6', 0, 'eao');
-INSERT INTO `adminnoofnotification` VALUES ('7', 0, 'oic');
+INSERT INTO `adminnoofnotification` VALUES ('1', 1, 'eao');
+INSERT INTO `adminnoofnotification` VALUES ('2', 3, 'oic');
+INSERT INTO `adminnoofnotification` VALUES ('3', 6, 'eao');
+INSERT INTO `adminnoofnotification` VALUES ('4', 1, 'eao');
+INSERT INTO `adminnoofnotification` VALUES ('5', 5, 'oic');
+INSERT INTO `adminnoofnotification` VALUES ('6', 1, 'eao');
+INSERT INTO `adminnoofnotification` VALUES ('7', 3, 'oic');
 
 -- ----------------------------
 -- Table structure for adminnotification
@@ -104,11 +107,23 @@ CREATE TABLE `adminnotification`  (
   `isSeen` tinyint(1) NOT NULL DEFAULT 0,
   `time` datetime NOT NULL DEFAULT current_timestamp,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 29 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 41 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of adminnotification
 -- ----------------------------
+INSERT INTO `adminnotification` VALUES (29, '2', 'A new event has been created \"fffffff\"', 0, '2022-05-26 10:26:45');
+INSERT INTO `adminnotification` VALUES (30, '5', 'A new event has been created \"fffffff\"', 0, '2022-05-26 10:26:45');
+INSERT INTO `adminnotification` VALUES (31, '7', 'A new event has been created \"fffffff\"', 0, '2022-05-26 10:26:45');
+INSERT INTO `adminnotification` VALUES (32, '2', 'A new event has been created \"ssssdsdsds\"', 0, '2022-05-26 10:30:41');
+INSERT INTO `adminnotification` VALUES (33, '5', 'A new event has been created \"ssssdsdsds\"', 0, '2022-05-26 10:30:41');
+INSERT INTO `adminnotification` VALUES (34, '7', 'A new event has been created \"ssssdsdsds\"', 0, '2022-05-26 10:30:41');
+INSERT INTO `adminnotification` VALUES (35, '2', 'A new event has been created \"ssssdsdsds\"', 0, '2022-05-26 10:31:03');
+INSERT INTO `adminnotification` VALUES (36, '5', 'A new event has been created \"ssssdsdsds\"', 0, '2022-05-26 10:31:03');
+INSERT INTO `adminnotification` VALUES (37, '7', 'A new event has been created \"ssssdsdsds\"', 0, '2022-05-26 10:31:03');
+INSERT INTO `adminnotification` VALUES (38, '1', 'A new event has been approved \"test1\"', 0, '2022-05-26 12:59:31');
+INSERT INTO `adminnotification` VALUES (39, '4', 'A new event has been approved \"test1\"', 0, '2022-05-26 12:59:31');
+INSERT INTO `adminnotification` VALUES (40, '6', 'A new event has been approved \"test1\"', 0, '2022-05-26 12:59:31');
 
 -- ----------------------------
 -- Table structure for event
@@ -132,13 +147,15 @@ CREATE TABLE `event`  (
   `schoolYear` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `semester` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 17 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 20 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of event
 -- ----------------------------
 INSERT INTO `event` VALUES (15, 'Blood Donation', '10', '2022-05-19', '2022-05-21', 'Unlimited Number of Student', 'Alert Center', 'Ballpen, Valtrace', 0, 1, 'uploads/maxresdefault.jpg', '8am-5pm', 0, 0, '2021-2022', '2nd Semester');
-INSERT INTO `event` VALUES (16, 'Library', '15', '2022-05-19', '2022-05-19', '15', 'PLV Maysan', 'None', 1, 1, 'uploads/275174571_516296976508338_949279525004280798_n.jpg', '8am-5pm', 0, 1, '2021-2022', '2nd Semester');
+INSERT INTO `event` VALUES (16, 'Library', '15', '2022-05-19', '2022-05-19', '1', 'PLV Maysan', 'None', 1, 1, 'uploads/275174571_516296976508338_949279525004280798_n.jpg', '8am-5pm', 0, 1, '2021-2022', '2nd Semester');
+INSERT INTO `event` VALUES (18, 'test1', '49', '2022-05-26', '2022-05-26', 'Unlimited Number of Student', 'dfgdfg', 'dfgdfg', 0, 1, 'uploads/Wallpaper.png', '45', 0, 0, '2021-2022', '1st Semester');
+INSERT INTO `event` VALUES (19, 'ssssdsdsds', '49', '2022-05-26', '2022-05-26', 'Unlimited Number of Student', 'dfgdfg', 'dfgdfg', 0, 0, 'uploads/Wallpaper.png', '45', 0, 0, '2021-2022', '1st Semester');
 
 -- ----------------------------
 -- Table structure for eventandwishingtoparticipate
@@ -152,6 +169,9 @@ CREATE TABLE `eventandwishingtoparticipate`  (
 -- ----------------------------
 -- Records of eventandwishingtoparticipate
 -- ----------------------------
+INSERT INTO `eventandwishingtoparticipate` VALUES (15, 32);
+INSERT INTO `eventandwishingtoparticipate` VALUES (15, 30);
+INSERT INTO `eventandwishingtoparticipate` VALUES (16, 32);
 
 -- ----------------------------
 -- Table structure for eventstudentandhours
@@ -182,7 +202,7 @@ CREATE TABLE `requestpassword`  (
   `date_created` datetime NULL DEFAULT current_timestamp,
   PRIMARY KEY (`token`) USING BTREE,
   UNIQUE INDEX `id`(`id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of requestpassword
@@ -193,6 +213,15 @@ INSERT INTO `requestpassword` VALUES (3, 'plvscs@gmail.com', '1653358222', 'Pend
 INSERT INTO `requestpassword` VALUES (4, 'plvscs@gmail.com', '1653358252', 'Pending', '2022-05-24 10:10:52');
 INSERT INTO `requestpassword` VALUES (5, 'lorraineangelilibatique@gmail.com', '1653358761', 'Done', '2022-05-24 10:19:21');
 INSERT INTO `requestpassword` VALUES (6, 'lorraineangelilibatique@gmail.com', '1653361452', 'Pending', '2022-05-24 11:04:12');
+INSERT INTO `requestpassword` VALUES (7, 'lorraineangelilibatique@gmail.com', '1653450194', 'Pending', '2022-05-25 11:43:14');
+INSERT INTO `requestpassword` VALUES (8, 'lorraineangelilibatique@gmail.com', '1653450465', 'Pending', '2022-05-25 11:47:45');
+INSERT INTO `requestpassword` VALUES (9, 'lorraineangelilibatique@gmail.com', '1653450604', 'Pending', '2022-05-25 11:50:04');
+INSERT INTO `requestpassword` VALUES (10, 'lorraineangelilibatique@gmail.com', '1653450886', 'Pending', '2022-05-25 11:54:46');
+INSERT INTO `requestpassword` VALUES (11, 'zolerjerwen@gmail.com', '1653522365', 'Pending', '2022-05-26 07:46:05');
+INSERT INTO `requestpassword` VALUES (12, 'zolerjerwen@gmail.com', '1653523503', 'Done', '2022-05-26 08:05:03');
+INSERT INTO `requestpassword` VALUES (13, 'zolerjerwen@gmail.com', '1653526869', 'Done', '2022-05-26 09:01:09');
+INSERT INTO `requestpassword` VALUES (14, 'lorraineangelilibatique@gmail.com', '1653528270', 'Done', '2022-05-26 09:24:30');
+INSERT INTO `requestpassword` VALUES (15, 'zolerjerwen@gmail.com', '1653531334', 'Done', '2022-05-26 10:15:34');
 
 -- ----------------------------
 -- Table structure for student
@@ -212,20 +241,22 @@ CREATE TABLE `student`  (
   `password` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `emergencyName` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `emergencyNumber` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
-  `studentStatus` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '\'active\'',
+  `studentStatus` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '\'active\'',
   `lackingHours` int NOT NULL DEFAULT 160,
   `academicYearStarted` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   PRIMARY KEY (`studentNo`) USING BTREE,
   UNIQUE INDEX `id`(`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 33 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES (1, '18-001', 'lorraineangelilibatique@gmail.com', 'Libatique', '09424173121', 'Lorraine Angeli', 'Malinta Valenzuela City', 'Cruz', 'lorr', 'Bachelor of Science in Information Technology', 'student1', 'undefined', 'undefined', '\'active\'', 160, '13-14');
-INSERT INTO `student` VALUES (5, '18-0230', 'almarglenmarcelo@gmail.com', 'Marcelo', '09363435662', 'Almar', 'Malinta Valenzuela City', 'Ignacio', NULL, 'Bachelor of Science in Information Technology', '07282000', 'undefined', 'undefined', '\'active\'', 160, '18-19');
-INSERT INTO `student` VALUES (3, '18-0000', 'vhang.agustin.cruz@gmail.com', 'Libatique', '09424173121', 'Evangeline', 'Malinta Valenzuela City', 'Cruz', 'lrain', 'Bachelor of Science in Electrical Engineering', 'student2', 'undefined', 'undefined', '\'active\'', 160, '13-14');
-INSERT INTO `student` VALUES (6, '18-0357', 'janinedianemaxion@gmail.com', 'Maxion', '09993094614', 'Janine', 'Orange Ville, Dalandanan, Valenzuela City', 'Cruz', NULL, 'Bachelor of Science in Information Technology', '18-0357Maxion', 'undefined', 'undefined', '\'active\'', 160, '21-22');
+INSERT INTO `student` VALUES (31, '18-00', 'zolerjerwen@gmail.com', 'Cruz', '9672180574', 'Aleah', 'Tongco St., Maysan Valenzuela', 'Gani', NULL, 'Bachelor of Science in Information Technology', 'gb+MXPHVj81P28n8rezGTPyUMxAC', NULL, NULL, 'Active', 40, '18-19');
+INSERT INTO `student` VALUES (30, '18-0011', 'almar_glen@yahoo.com', 'Cruz', '9420509572', 'Aldrin', 'Tongco St., Maysan Valenzuela', 'Aquinde', NULL, 'Bachelor of Science in Information Technology', 'oJvR7ioSbKhTc6kGNnacew==', NULL, NULL, 'Active', 90, '18-19');
+INSERT INTO `student` VALUES (32, '14-10', 'zolerjerwen@gmail.com', 'Reloz', '2022', 'Wen', 'CC', 'L', NULL, 'Bachelor of Science in Electrical Engineering', 'gb+MXPHVj81P28n8rezGTPyUMxAC', 'undefined', 'undefined', '\'active\'', 50, '13-14');
+INSERT INTO `student` VALUES (29, '18-0010', 'ag.marcelo28@gmail.com', 'Cruz', '9291156649', 'Angelica', 'Tongco St., Maysan Valenzuela', 'Gani', NULL, 'Bachelor of Science in Information Technology', 'oJvR7ioSbKhTc6kGNnacew==', NULL, NULL, 'Active', 70, '18-19');
+INSERT INTO `student` VALUES (27, '18-0008', 'superiorwarrior01@gmail.com', 'Cruz', '9266848477', 'Adrian', 'Tongco St., Maysan Valenzuela', 'Aquinde', NULL, 'Bachelor of Science in Information Technology', 'oJvR7ioSbKhTc6kGNnacew==', NULL, NULL, 'Active', 160, '18-19');
+INSERT INTO `student` VALUES (28, '18-0009', 'lorraineangelilibatique@gmail.com', 'Doe', '9235208660', 'Lorraine', 'Tongco St., Maysan Valenzuela', 'Doe', NULL, 'Bachelor of Science in Information Technology', 'oJvR7ioSbKhTc6kGNnacew==', NULL, NULL, 'Active', 100, '18-19');
 
 -- ----------------------------
 -- Table structure for studentandeventparticipatedin
@@ -252,12 +283,13 @@ CREATE TABLE `studentnoofnotification`  (
 -- ----------------------------
 -- Records of studentnoofnotification
 -- ----------------------------
-INSERT INTO `studentnoofnotification` VALUES ('4', 2);
-INSERT INTO `studentnoofnotification` VALUES ('3', 0);
-INSERT INTO `studentnoofnotification` VALUES ('1', 0);
-INSERT INTO `studentnoofnotification` VALUES ('2', 5);
-INSERT INTO `studentnoofnotification` VALUES ('5', 0);
-INSERT INTO `studentnoofnotification` VALUES ('6', 0);
+INSERT INTO `studentnoofnotification` VALUES ('4', 3);
+INSERT INTO `studentnoofnotification` VALUES ('3', 1);
+INSERT INTO `studentnoofnotification` VALUES ('1', 1);
+INSERT INTO `studentnoofnotification` VALUES ('2', 6);
+INSERT INTO `studentnoofnotification` VALUES ('5', 1);
+INSERT INTO `studentnoofnotification` VALUES ('6', 1);
+INSERT INTO `studentnoofnotification` VALUES ('32', 0);
 
 -- ----------------------------
 -- Table structure for studentnotification
@@ -270,10 +302,16 @@ CREATE TABLE `studentnotification`  (
   `isSeen` tinyint(1) NOT NULL DEFAULT 0,
   `time` datetime NOT NULL DEFAULT current_timestamp,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 17 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 23 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of studentnotification
 -- ----------------------------
+INSERT INTO `studentnotification` VALUES (17, '27', 'A new event has been approved, please check the event/activities tab for \"test1\"', 0, '2022-05-26 12:59:31');
+INSERT INTO `studentnotification` VALUES (18, '28', 'A new event has been approved, please check the event/activities tab for \"test1\"', 0, '2022-05-26 12:59:31');
+INSERT INTO `studentnotification` VALUES (19, '29', 'A new event has been approved, please check the event/activities tab for \"test1\"', 0, '2022-05-26 12:59:31');
+INSERT INTO `studentnotification` VALUES (20, '30', 'A new event has been approved, please check the event/activities tab for \"test1\"', 0, '2022-05-26 12:59:31');
+INSERT INTO `studentnotification` VALUES (21, '31', 'A new event has been approved, please check the event/activities tab for \"test1\"', 0, '2022-05-26 12:59:31');
+INSERT INTO `studentnotification` VALUES (22, '32', 'A new event has been approved, please check the event/activities tab for \"test1\"', 0, '2022-05-26 12:59:31');
 
 SET FOREIGN_KEY_CHECKS = 1;

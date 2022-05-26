@@ -7,6 +7,7 @@ var base64ToImage = require('base64-to-image');
 var QRCode = require('qrcode')
 
 const nodemailer = require('nodemailer');
+var aes256 = require('aes256');
 
 
 const transporter = nodemailer.createTransport({
@@ -24,7 +25,6 @@ transporter.verify().then(console.log).catch(console.error);
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-
   res.render('login');
 
 });
@@ -38,17 +38,18 @@ router.get('/logout', function (req, res, next) {
 
 
 
-router.get('/forgot-password', function (req, res, next) {
-  res.render('resetpassword');
+router.get('/forgot-password/:usertype', function (req, res, next) {
+  res.render('resetpassword',{usertype:req.params.usertype});
 })
 
 
 
-router.get('/new-password/:token', function (req, res, next) {
+router.get('/new-password/:token/:usertype', function (req, res, next) {
 
   sqldb = req.con ;
 
   let token = req.params.token;
+  let usertype = req.params.usertype;
 
   sqldb.query(`select * from requestpassword where token = '${token}' and tokenstatus = 'Pending'`,(err,row)=>{
     if(err){
@@ -58,7 +59,10 @@ router.get('/new-password/:token', function (req, res, next) {
     }
 
     if (row.length >= 1) {
-      res.render('newpassword',{token:req.params.token});
+      res.render('newpassword',{
+        token:req.params.token,
+        usertype:usertype
+      });
     }else{
       res.write("<h1>token expired</h1><br><br><a href='/'>Back</a>");
       return;
@@ -77,10 +81,16 @@ router.post('/verify/:token', function (req,res,next){
 
       let password = req.body.validatepassword;
       let token = req.params.token
+      let usertype = req.body.usertype;
 
       var email;
 
 
+      if (usertype=="student") {
+        dbtable = "student";
+      }else{
+        dbtable = "admin";
+      }
 
 
       sqldb.query(`select * from requestpassword where token = '${token}' and tokenstatus = 'Pending'`,(err,row)=>{
@@ -95,7 +105,12 @@ router.post('/verify/:token', function (req,res,next){
           email = row[0].usermail;
 
 
-          sqldb.query(`update admin set password = '${password}' where email = '${email}'`,(err,row)=>{
+          var key = 'plvscs';
+          
+          var encryptedpass = aes256.encrypt(key,password);
+
+
+          sqldb.query(`update ${dbtable} set password = '${encryptedpass}' where email = '${email}'`,(err,row)=>{
             if(err){
               console.log(err);
               return;
@@ -124,11 +139,6 @@ router.post('/verify/:token', function (req,res,next){
       })
 
 
-
-
-      
-      
-
       return;
 
   });
@@ -136,16 +146,24 @@ router.post('/verify/:token', function (req,res,next){
 
 
 
-router.get('/send-link/:usermail', function (req, res, next) {
+router.get('/send-link/:usermail/:usertype', function (req, res, next) {
 
   sqldb = req.con ;
 
   let token = Math.floor(Date.now() / 1000);
   let usermail = req.params.usermail;
-  let newlink = "https://plvscs.tech/new-password/"+token;
+  let usertype = req.params.usertype;
+  let newlink = "https://plvscs.tech/new-password/"+token+"/"+usertype;
 
+  let dbtable = "";
+
+  if (usertype=="student") {
+    dbtable = "student";
+  }else{
+    dbtable = "admin";
+  }
   
-  sqldb.query(`select email from student where email = '${usermail}'`,(err,row)=>{
+  sqldb.query(`select email from ${dbtable} where email = '${usermail}'`,(err,row)=>{
     if(err){
       console.log(err);
       return;

@@ -40,18 +40,18 @@ router.get('/', async (req, res) => {
   }
 
 
-  console.log("/events ....,..***********")
+
 
   sqldb = req.con
 
 
-  sqldb.query('select * from event  where eventStatus = true and isEventDone = 0  ', (err, result) => {
+
+  sqldb.query('select *,IFNULL((select GROUP_CONCAT(studentId) from eventandwishingtoparticipate where eventId = evnt.id),"0000") as studentId, (select count(studentId) from eventandwishingtoparticipate where eventId = evnt.id) as studentcnt from event as evnt where evnt.eventStatus = 1 and evnt.isEventDone = 0 ', (err, result) => {
 
     if (err) {
       console.log(err)
     }
-    console.log(result)
-    console.log("events..." + JSON.stringify(result))
+
     res.send(result)
   })
 
@@ -266,11 +266,11 @@ router.get('/markAttendance/:eventid/:studentid', async (req, res) => {
 
 router.get("/unapproved", async (req, res) => {
 
-  session = req.session;
-  if (!session.userid) {
-    res.send(403);
-    return;
-  }
+  // session = req.session;
+  // if (!session.userid) {
+  //   res.send(403);
+  //   return;
+  // }
 
 
   sqldb = req.con
@@ -453,15 +453,15 @@ router.get("/delete/:evid", async (req,
 
 
 
-    session=req.session;
-    if(!session.userid){
-      res.send(403);
-      return;
-    }
+    // session=req.session;
+    // if(!session.userid){
+    //   res.send(403);
+    //   return;
+    // }
 
   let sqldb = req.con
 
-  sqldb.query(`update event set eventStatus = 0 where id = ${req.params.evid} `, (err, result) => {
+  sqldb.query(`delete from event where id = ${req.params.evid} `, (err, result) => {
 
     if (err) {
       console.log(err)
@@ -562,11 +562,11 @@ router.post("/modify/:eventid", upload.single('scannedimage'), async (req,
 
 router.get("/join/:eventid/:studentid", async (req, res) => {
 
-  session=req.session;
-  if(!session.userid){
-    res.send(403);
-    return;
-  }
+  // session=req.session;
+  // if(!session.userid){
+  //   res.send(403);
+  //   return;
+  // }
 
 
   sqldb = req.con;
@@ -586,14 +586,18 @@ router.get("/join/:eventid/:studentid", async (req, res) => {
       console.log("eventNoOfStudent: " + result[1][0].eventNoOfStudent)
       console.log("eventStudentParticipating: " + result[1][0].studentParticipating)
 
+
+     
       //let updatedNo =  result[1][0].studentParticipating + 1 ;
 
-      //console.log("updatedano: "+ updatedNo)
-      //console.log("updatedano: "+ updatedNo)
+      // console.log("no: "+ result[1][0].eventNoOfStudent)
+      // console.log("-----------------");
+      // console.log("ev: "+ result[1][0].studentParticipating)
 
+      
       if (result[0].length == 0) {
 
-        if (result[1][0].studentParticipating < result[1][0].eventNoOfStudent) {
+        if (result[1][0].studentParticipating <= result[1][0].eventNoOfStudent) {
 
 
           sqldb.query(`insert into eventandwishingtoparticipate (eventId,studentId) values(${sqldb.escape(req.params.eventid)}, ${sqldb.escape(req.params.studentid)})`, (err, result) => {
@@ -633,9 +637,7 @@ router.get("/join/:eventid/:studentid", async (req, res) => {
 
 
 
-
-
-        } else if (result[1][0].studentParticipating == result[1][0].eventNoOfStudent) {
+        } else if (result[1][0].studentParticipating >= result[1][0].eventNoOfStudent) {
           res.send("no more student are allowed to participate in this event")
         }
 

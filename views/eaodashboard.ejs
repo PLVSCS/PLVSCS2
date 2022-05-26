@@ -687,7 +687,7 @@ Image of Approval Letter” <br> "File types allowed: .jpg, .jpeg,
             <td> ${student.timeIn}   </td>
             <td> ${student.timeOut}   </td>   
             <!-- <td> ${student.hourRendered} </td> -->
-            <td>  <input required id="${student.id}" > <button onclick="assignRenderedHours('/event/inputrenderedhours/${arr[0][0].id}/${student.id}/','${arr[0][0].id}','${student.id}')"> Save  </button> </td>
+            <td>  <input type="text" required id="${student.id}" > <button onclick="assignRenderedHours('/event/inputrenderedhours/${arr[0][0].id}/${student.id}/','${arr[0][0].id}','${student.id}')"> Save  </button> </td>
             </tr>`;
           }
 
@@ -709,6 +709,8 @@ Image of Approval Letter” <br> "File types allowed: .jpg, .jpeg,
     }
 
 
+
+    
 
     function updateHoursMultiplier(element) {
       let hrx = element.value;
@@ -1126,6 +1128,14 @@ number of participants has no limit" class="form-control" >
     async function assignRenderedHours(a, b, c) {
 
       let numberOfHours = document.getElementById(c).value
+
+      if (numberOfHours=="" || numberOfHours == null || numberOfHours == undefined) {
+        alert("please input hours!");
+        return;
+      }
+
+
+      
       let response = await fetch(a + numberOfHours);
       let data = await response.text();
       getEventInfo(`/event/${b}`)

@@ -6,7 +6,7 @@ var base64ToImage = require('base64-to-image');
 
 var QRCode = require('qrcode')
 
-
+var aes256 = require('aes256');
 
 
 router.get('/', (req, res) => {
@@ -39,9 +39,9 @@ router.post('/', async (req, res) => {
     }
 
 
-    session=req.session;
-    session.userid=req.body.studentid;
-    console.log(req.session)
+    
+
+    
 
 
 
@@ -50,14 +50,33 @@ router.post('/', async (req, res) => {
 
     console.log(result)
 
-    if (currentStudent && currentStudent.password == req.body.password) {
+    
+    var key = 'plvscs';
+    var encryptedpass = currentStudent.password;
+
+    var decryptedpass = aes256.decrypt(key,encryptedpass);
+
+
+    session=req.session;
+    session.userid=req.body.studentid;
+    session.userrow=currentStudent.id;
+    console.log(req.session)
+
+
+    if (currentStudent && decryptedpass == req.body.password) {
 
       sqldb.query(`select * from studentnoofnotification where studentId = ${currentStudent.id}`, (err, rows_) => {
 
+      
         QRCode.toDataURL(currentStudent.id.toString(), function (err, url) {
           studentqrCode = url;
-          var notif = rows_ ? rows_[0].noOfNotification : 0;
-          res.render('studentdashboard', { currentStudent, url, noOfNotification:  notif})
+          var notif = rows_.length > 0 ? rows_[0].noOfNotification : 0;
+          res.render('studentdashboard', { 
+            currentStudent, 
+            url, 
+            noOfNotification:  notif,
+            lackingHours:currentStudent.lackingHours
+          })
         })
 
       })
@@ -127,9 +146,9 @@ router.get("/dashboard/:studentid", (req, res) => {
 
   sqldb = req.con;
 
-  sqldb.query(`select * from eventandwishingtoparticipate join event on eventandwishingtoparticipate.eventId = event.id  
-    where studentId = ${req.params.studentid} ;
-    select * from eventstudentandhours join event on eventstudentandhours.eventId = event.id  where studentId = ${req.params.studentid}
+  sqldb.query(`select * from eventandwishingtoparticipate join event on eventandwishingtoparticipate.eventId = event.id  where studentId = ${req.params.studentid};
+    select * from eventstudentandhours join event on eventstudentandhours.eventId = event.id  where studentId = ${req.params.studentid};
+    select * from student where id = '${req.params.studentid}'
     `, (err, result) => {
 
     if (err) {
@@ -137,7 +156,6 @@ router.get("/dashboard/:studentid", (req, res) => {
       return
     }
 
-    console.log("ggggg" + JSON.stringify(result))
 
     res.send(result)
   })
