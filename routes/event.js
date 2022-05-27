@@ -33,11 +33,11 @@ var upload = multer({
 router.get('/', async (req, res) => {
 
 
-  session = req.session;
-  if (!session.userid) {
-    res.send(403);
-    return;
-  }
+  // session = req.session;
+  // if (!session.userid) {
+  //   res.send(403);
+  //   return;
+  // }
 
 
 
@@ -70,11 +70,11 @@ router.get('/', async (req, res) => {
 router.get('/event_all', async (req, res) => {
 
 
-  session = req.session;
-  if (!session.userid) {
-    res.send(403);
-    return;
-  }
+  // session = req.session;
+  // if (!session.userid) {
+  //   res.send(403);
+  //   return;
+  // }
   //console.log("/events ....,..***********")
 
   sqldb = req.con
@@ -104,11 +104,11 @@ router.get('/event_all', async (req, res) => {
 router.get('/markAttendance/:eventid/:studentid', async (req, res) => {
 
 
-  session = req.session;
-  if (!session.userid) {
-    res.send(403);
-    return;
-  }
+  // session = req.session;
+  // if (!session.userid) {
+  //   res.send(403);
+  //   return;
+  // }
 
   sqldb = req.con;
 
@@ -496,11 +496,11 @@ router.post("/modify/:eventid", upload.single('scannedimage'), async (req,
 
 
 
-    session=req.session;
-    if(!session.userid){
-      res.send(403);
-      return;
-    }
+    // session=req.session;
+    // if(!session.userid){
+    //   res.send(403);
+    //   return;
+    // }
 
 
   sqldb = req.con;
@@ -689,11 +689,11 @@ router.get("/inputrenderedhours/:eventid/:studentid/:hours", async (req,
   res) => {
 
 
-    session=req.session;
-    if(!session.userid){
-      res.send(403);
-      return;
-    }
+    // session=req.session;
+    // if(!session.userid){
+    //   res.send(403);
+    //   return;
+    // }
 
 
   sqldb = req.con;
@@ -720,11 +720,11 @@ router.get("/hour_rendered/:eventid/:studentid/:hours", async (req,
   res) => {
 
 
-    session=req.session;
-    if(!session.userid){
-      res.send(403);
-      return;
-    }
+    // session=req.session;
+    // if(!session.userid){
+    //   res.send(403);
+    //   return;
+    // }
 
   sqldb = req.con;
 
@@ -766,11 +766,11 @@ router.get("/hour_rendered/:eventid/:studentid/:hours", async (req,
 
 router.get("/mark_done/:eventid", (req, res) => {
 
-  session=req.session;
-  if(!session.userid){
-    res.send(403);
-    return;
-  }
+  // session=req.session;
+  // if(!session.userid){
+  //   res.send(403);
+  //   return;
+  // }
 
 
 
@@ -797,11 +797,11 @@ router.get("/mark_done/:eventid", (req, res) => {
 router.get("/participating_in/:studentid", (req, res) => {
 
 
-  session=req.session;
-  if(!session.userid){
-    res.send(403);
-    return;
-  }
+  // session=req.session;
+  // if(!session.userid){
+  //   res.send(403);
+  //   return;
+  // }
 
 
   sqldb = req.con;
@@ -825,11 +825,11 @@ router.get("/participating_in/:studentid", (req, res) => {
 router.get("/cancelParticipation/:eventid/:studentid", (req, res) => {
 
 
-  session=req.session;
-  if(!session.userid){
-    res.send(403);
-    return;
-  }
+  // session=req.session;
+  // if(!session.userid){
+  //   res.send(403);
+  //   return;
+  // }
 
   sqldb = req.con;
 
@@ -874,11 +874,11 @@ router.get("/cancelParticipation/:eventid/:studentid", (req, res) => {
 router.get("/timeout/:eventid/:studentid", (req, res) => {
 
 
-  session=req.session;
-  if(!session.userid){
-    res.send(403);
-    return;
-  }
+  // session=req.session;
+  // if(!session.userid){
+  //   res.send(403);
+  //   return;
+  // }
 
   sqldb = req.con;
 
@@ -915,11 +915,11 @@ router.get(`/event-attendees`, (req, res) => {
 
 
 
-  session=req.session;
-  if(!session.userid){
-    res.send(403);
-    return;
-  }
+  // session=req.session;
+  // if(!session.userid){
+  //   res.send(403);
+  //   return;
+  // }
 
 
   sqldb = null;
@@ -948,11 +948,11 @@ router.get(`/event-attendees`, (req, res) => {
 router.get('/hour-multiplier/:studentid/:hrx', async (req, res) => {
 
 
-  session=req.session;
-  if(!session.userid){
-    res.send(403);
-    return;
-  }
+  // session=req.session;
+  // if(!session.userid){
+  //   res.send(403);
+  //   return;
+  // }
 
   let hrx = req.params.hrx;
   let studentid = req.params.studentid;
@@ -983,11 +983,11 @@ router.get('/:eventid', async (req,
   res) => {
 
 
-    session=req.session;
-    if(!session.userid){
-      res.send(403);
-      return;
-    }
+    // session=req.session;
+    // if(!session.userid){
+    //   res.send(403);
+    //   return;
+    // }
 
     
   //mysql

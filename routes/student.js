@@ -137,11 +137,11 @@ router.post("/change_password/:studentid", (req, res) => {
 router.get("/dashboard/:studentid", (req, res) => {
 
 
-  session=req.session;
-  if(!session.userid){
-    res.send(403);
-    return;
-  }
+  // session=req.session;
+  // if(!session.userid){
+  //   res.send(403);
+  //   return;
+  // }
 
 
   sqldb = req.con;
@@ -171,11 +171,11 @@ router.get("/dashboard/:studentid", (req, res) => {
 router.get("/notifications/:studentid", (req, res) => {
 
 
-  session=req.session;
-  if(!session.userid){
-    res.send(403);
-    return;
-  }
+  // session=req.session;
+  // if(!session.userid){
+  //   res.send(403);
+  //   return;
+  // }
 
 
   sqldb = req.con
@@ -207,11 +207,11 @@ router.get("/notifications/:studentid", (req, res) => {
 router.get(`/all_notification/:studentid`, (req, res) => {
 
 
-  session=req.session;
-  if(!session.userid){
-    res.send(403);
-    return;
-  }
+  // session=req.session;
+  // if(!session.userid){
+  //   res.send(403);
+  //   return;
+  // }
 
   sqldb = req.con;
 

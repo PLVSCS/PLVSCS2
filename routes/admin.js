@@ -116,11 +116,11 @@ router.post('/import-accounts', upload.single('excelfile'), (req, res, next) => 
 router.post("/validate_action/:eventid", (req, res) => {
 
 
-  session = req.session;
-  if (!session.userid) {
-    res.send(403);
-    return;
-  }
+  // session = req.session;
+  // if (!session.userid) {
+  //   res.send(403);
+  //   return;
+  // }
 
   sqldb = req.con
 
@@ -181,11 +181,11 @@ router.post("/validate_action/:eventid", (req, res) => {
 
 router.get("/list_of_event/:adminid", (req, res) => {
 
-  session = req.session;
-  if (!session.userid) {
-    res.send(403);
-    return;
-  }
+  // session = req.session;
+  // if (!session.userid) {
+  //   res.send(403);
+  //   return;
+  // }
 
   sqldb = req.con;
 
@@ -206,11 +206,11 @@ router.get("/list_of_event/:adminid", (req, res) => {
 router.get("/list_of_event_approved/:adminid", (req, res) => {
 
 
-  session = req.session;
-  if (!session.userid) {
-    res.send(403);
-    return;
-  }
+  // session = req.session;
+  // if (!session.userid) {
+  //   res.send(403);
+  //   return;
+  // }
 
   sqldb = req.con;
 
@@ -839,11 +839,11 @@ router.post("/change_password/:adminid", (req, res) => {
 router.post('/mass_account', (req, res) => {
 
 
-  session = req.session;
-  if (!session.userid) {
-    res.send(403);
-    return;
-  }
+  // session = req.session;
+  // if (!session.userid) {
+  //   res.send(403);
+  //   return;
+  // }
 
   sqldb = req.con
 
@@ -915,11 +915,11 @@ router.post('/mass_account', (req, res) => {
 router.get("/no_of_notification/:adminid", (req, res) => {
 
 
-  session = req.session;
-  if (!session.userid) {
-    res.send(403);
-    return;
-  }
+  // session = req.session;
+  // if (!session.userid) {
+  //   res.send(403);
+  //   return;
+  // }
 
   sqldb = req.con;
 
@@ -942,11 +942,11 @@ router.get("/no_of_notification/:adminid", (req, res) => {
 router.get("/allnotification/:adminid", (req, res) => {
 
 
-  session = req.session;
-  if (!session.userid) {
-    res.send(403);
-    return;
-  }
+  // session = req.session;
+  // if (!session.userid) {
+  //   res.send(403);
+  //   return;
+  // }
 
   sqldb = req.con;
 
