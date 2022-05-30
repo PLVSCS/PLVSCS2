@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>Document</title>
+    <title>Certificate of Completion</title>
+
+    
+    <link rel="shortcut icon" href="/images/PLVLOGO.png" sizes="16x16 32x32" type="image/png">
 
     <style>
         @import url('https://fonts.googleapis.com/css?family=Open+Sans|Pinyon+Script|Rochester');
@@ -153,9 +156,12 @@
           <div class="inner-border"></div>
           
           <div class="pm-certificate-border col-xs-12">
+            <img align="left" width="100" height="100" src="/images/PLVLOGO.png">
             <div class="row pm-certificate-header">
+             
               <div class="pm-certificate-title cursive col-xs-12 text-center">
-                <h2>Pamantasan ng Lungsod ng Valenzuela</h2>
+               
+                <center><h1>Pamantasan ng Lungsod ng Valenzuela</h1></center>
               </div>
             </div>
       
@@ -166,7 +172,7 @@
                     <div class="row">
                       <div class="col-xs-2"><!-- LEAVE EMPTY --></div>
                       <div class="pm-certificate-name underline margin-0 col-xs-8 text-center">
-                        <span class="pm-name-text bold"><%= name %></span>
+                      <center><span class="pm-name-text bold"><%= name %></span></center>
                       </div>
                       <div class="col-xs-2"><!-- LEAVE EMPTY --></div>
                     </div>
@@ -176,8 +182,8 @@
                     <div class="row">
                       <div class="col-xs-2"><!-- LEAVE EMPTY --></div>
                       <div class="pm-earned col-xs-8 text-center">
-                        <span class="pm-earned-text padding-0 block cursive">has earned</span>
-                        <span class="pm-credits-text block bold sans"><%= rendered %> Hours</span>
+                       <center><span class="pm-earned-text padding-0 block cursive">has earned</span></center> 
+                        <center><span class="pm-credits-text block bold sans"><%= rendered %> Hours</span></center>
                       </div>
                       <div class="col-xs-2"><!-- LEAVE EMPTY --></div>
                       <div class="col-xs-12"></div>
@@ -190,7 +196,7 @@
                     <div class="row">
                       <div class="col-xs-2"><!-- LEAVE EMPTY --></div>
                       <div class="pm-course-title underline col-xs-8 text-center">
-                        <span class="pm-credits-text block bold sans">Social Contract</span>
+                       <center> <span class="pm-credits-text block bold sans">For their Social Contract Obligation.</span></center>
                       </div>
                       <div class="col-xs-2"><!-- LEAVE EMPTY --></div>
                     </div>
@@ -213,7 +219,7 @@
                         <span class="pm-empty-space block underline"></span>
                       </div>
                       <div class="col-xs-4 pm-certified col-xs-4 text-center">
-                        <span class="pm-credits-text block sans">Issued By: <input type="text" name="" id="" value="<%= session.username %>"></b> </span>
+                        <center><span class="pm-credits-text block sans">Issued By: <input type="text" name="" id="" value="<%= session.username %>"></b> </span></center>
                         <span class="pm-empty-space block underline"></span>
                       </div>
                   </div>
