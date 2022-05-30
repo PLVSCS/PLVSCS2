@@ -437,7 +437,6 @@
         <input class="form-control" id="newpassword2" placeholder="confirm password">
         <br>
         <button class="btn btn-danger btn-md" onclick="changePassword(1)"> Change password </button>
-        
         `
         }
 
@@ -450,9 +449,13 @@
           if (password1.value != password2.value) {
             alert("password must match!")
             return;
-          }
-
-          else {
+          }else if (currentPassword.value=="" || currentPassword.value == null) {
+            alert("current password must be provided!");
+            return;
+          }else if (password1.value=="" || password2.value == "") {
+            alert("empty password!");
+            return;
+          } else {
             data = {
               currentpassword: currentPassword.value,
               newpassword: password1.value

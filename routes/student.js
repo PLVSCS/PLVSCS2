@@ -112,20 +112,36 @@ router.post("/change_password/:studentid", (req, res) => {
       return
     }
 
+
     student = result[0]
-    console.log("admin: " + JSON.stringify(student))
 
-    if (student.password == req.body.currentpassword) {
 
-      sqldb.query(`update student set password ='${req.body.newpassword}' where id =${req.params.studentid}`, (err, result) => {
+    var key = 'plvscs';
+    let currpassword = aes256.decrypt(key,student.password);
+    var updatedpassword = aes256.encrypt(key,req.body.newpassword);
+  
+
+
+    if (currpassword == req.body.currentpassword) {
+
+
+      
+
+      sqldb.query(`update student set password ='${updatedpassword}' where id =${req.params.studentid}`, (err, result) => {
         if (err) {
-          res.send("password could not be changed . Please try again: " + err)
+
+
+        
+          res.send("password could not be changed . Please try again: " + err);
           return;
+
         }
 
         res.send("password was changed successfully")
-        return;
+        
       })
+    }else{
+        res.send("Error occured. Please try again.");
     }
 
 

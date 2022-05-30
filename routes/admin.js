@@ -38,6 +38,47 @@ router.get('/import-accounts', (req, res) => {
 
 
 
+
+
+router.get('/generate-certificate',(req, res) => {
+
+    sqldb = req.con;
+
+    sqldb.query(`SELECT stdnt.id,stdnt.studentNo,stdnt.firstName,stdnt.surname,stdnt.lackingHours,(select ifnull(sum(hourRendered),0)  from eventstudentandhours where studentId = stdnt.id ) as rendered FROM student as stdnt;`, (err, result) => {
+      if (err) {
+        res.send(err)
+      }
+      res.render("generatecertificate",{
+        results:result
+      });
+    })
+
+});
+
+
+
+
+
+router.post('/certificate',(req, res) => {
+
+  let name = req.body.name;
+  let lacking = req.body.lacking;
+  let rendered = req.body.rendered;
+
+  res.render("certificate",{
+    name:name,
+    lacking:lacking,
+    rendered:rendered,
+  });
+
+});
+
+
+
+
+
+
+
 router.post('/import-accounts', upload.single('excelfile'), (req, res, next) => {
 
 
@@ -53,6 +94,7 @@ router.post('/import-accounts', upload.single('excelfile'), (req, res, next) => 
     
     sqldb = req.con;
 
+    
     let query = `INSERT INTO ${importfor} (id,studentNo,email,surname,contactNo,firstName,address,middleName,username,course,password,emergencyName,emergencyNumber,studentStatus,lackingHours,academicYearStarted) VALUES ?`;
     sqldb.query(query, [rows], (error, response) => {
        
@@ -318,6 +360,12 @@ router.post('/', async (req, res) => {
 
 
         if (currentAdminMysql.adminType == "oic") {
+          console.log();
+
+          session=req.session;
+          session.username= currentAdminMysql.firstName + " " +currentAdminMysql.surname;
+       
+
           res.render('oicdashboard', { adminType: "OIC DASHBOARD", currentAdmin, noOfNotification_: result[1][0] })
 
           return;
@@ -811,11 +859,16 @@ router.post("/change_password/:adminid", (req, res) => {
     }
 
     admin = result[0]
-    console.log("admin: " + JSON.stringify(admin))
+   
 
-    if (admin.password == req.body.currentpassword) {
+    var key = 'plvscs';
+    let currpassword = aes256.decrypt(key,admin.password);
+    var updatedpassword = aes256.encrypt(key,req.body.newpassword);
+    
 
-      sqldb.query(`update admin set password ='${req.body.newpassword}' where idNo =${req.params.adminid}`, (err, result) => {
+    if (currpassword == req.body.currentpassword) {
+
+      sqldb.query(`update admin set password ='${updatedpassword}' where idNo =${req.params.adminid}`, (err, result) => {
         if (err) {
           res.send("password could not be changed . Please try again: " + err)
           return;
