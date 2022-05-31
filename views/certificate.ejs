@@ -213,15 +213,17 @@
                       </div>
                       <div class="col-xs-4">
                         <!-- LEAVE EMPTY -->
+                        <center><span class="pm-credits-text block sans">Issued By: <input type="text" name="" id="" value="<%= session.username %>"></b> </span></center>
                       </div>
                       <div class="col-xs-4 pm-certified col-xs-4 text-center">
                         <span class="pm-credits-text block sans">Date Issued: <b><%= (new Date()).toString().substring(0, 15); %></b> </span>
                         <span class="pm-empty-space block underline"></span>
                       </div>
                       <div class="col-xs-4 pm-certified col-xs-4 text-center">
-                        <center><span class="pm-credits-text block sans">Issued By: <input type="text" name="" id="" value="<%= session.username %>"></b> </span></center>
-                        <span class="pm-empty-space block underline"></span>
+                        
+                        <!-- <span class="pm-empty-space block underline"></span> -->
                       </div>
+                      
                   </div>
                 </div>
               </div>
