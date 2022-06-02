@@ -48,7 +48,7 @@
             position: relative;
             width: 800px;
             height: 600px;
-            background-color: #618597;
+            background-color: #002454;
             padding: 30px;
             color: #333;
             font-family: 'Open Sans', sans-serif;
@@ -96,7 +96,7 @@
             position: relative;
             left: 50%;
             margin-left: -325px;
-            top: 70px;
+            top: -20px;
             margin-top: 0;
         }
         .pm-certificate-container .pm-certificate-border .pm-certificate-header {
@@ -104,7 +104,8 @@
         }
         .pm-certificate-container .pm-certificate-border .pm-certificate-title {
             position: relative;
-            top: 40px;
+            top: 10px;
+            left: -30;
         }
         .pm-certificate-container .pm-certificate-border .pm-certificate-title h2 {
             font-size: 34px !important;
@@ -142,7 +143,10 @@
             position: relative;
             left: 50%;
             margin-left: -325px;
-            bottom: -105px;
+            bottom: -10px;
+        }
+        @media print {
+        body {-webkit-print-color-adjust: exact;}
         }
  
     </style>
@@ -157,11 +161,15 @@
           
           <div class="pm-certificate-border col-xs-12">
             <img align="left" width="100" height="100" src="/images/PLVLOGO.png">
+            
+           
             <div class="row pm-certificate-header">
-             
+             <center><h5>Pamantasan ng Lungsod ng Valenzuela <br>
+              Office of the Community Engagement and Extension Service<br><br>
+            awards this</h5></center>
               <div class="pm-certificate-title cursive col-xs-12 text-center">
                
-                <center><h1>Pamantasan ng Lungsod ng Valenzuela</h1></center>
+                <center><h1>Certificate of Completion</h1></center>
               </div>
             </div>
       
@@ -172,6 +180,7 @@
                     <div class="row">
                       <div class="col-xs-2"><!-- LEAVE EMPTY --></div>
                       <div class="pm-certificate-name underline margin-0 col-xs-8 text-center">
+                        <center><h5>to</h5></center>
                       <center><span class="pm-name-text bold"><%= name %></span></center>
                       </div>
                       <div class="col-xs-2"><!-- LEAVE EMPTY --></div>
@@ -182,7 +191,7 @@
                     <div class="row">
                       <div class="col-xs-2"><!-- LEAVE EMPTY --></div>
                       <div class="pm-earned col-xs-8 text-center">
-                       <center><span class="pm-earned-text padding-0 block cursive">has earned</span></center> 
+                       <center><span class="pm-earned-text padding-0 block cursive">who has earned</span></center> 
                         <center><span class="pm-credits-text block bold sans"><%= rendered %> Hours</span></center>
                       </div>
                       <div class="col-xs-2"><!-- LEAVE EMPTY --></div>
@@ -207,9 +216,9 @@
                 <div class="row">
                   <div class="pm-certificate-footer">
                       <div class="col-xs-4 pm-certified col-xs-4 text-center">
-                        <span class="pm-credits-text block sans"></span>
-                        <span class="pm-empty-space block underline"></span>
-                        <span class="bold block"></span>
+                        <!-- <span class="pm-credits-text block sans"></span> -->
+                        <!-- <span class="pm-empty-space block underline"></span> -->
+                        <!-- <span class="bold block"></span> -->
                       </div>
                       <div class="col-xs-4">
                         <!-- LEAVE EMPTY -->
@@ -217,7 +226,7 @@
                       </div>
                       <div class="col-xs-4 pm-certified col-xs-4 text-center">
                         <span class="pm-credits-text block sans">Date Issued: <b><%= (new Date()).toString().substring(0, 15); %></b> </span>
-                        <span class="pm-empty-space block underline"></span>
+                        <!-- <span class="pm-empty-space block underline"></span> -->
                       </div>
                       <div class="col-xs-4 pm-certified col-xs-4 text-center">
                         
